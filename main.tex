@@ -1,0 +1,74 @@
+ \documentclass[12pt, a4paper]{article} %, draft , twoside
+
+\input{preamble.tex}
+\addbibresource{references.bib}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    citecolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+    breaklinks=true,
+    pdfborder={0 0 0}
+}
+\setlist[itemize]{leftmargin=*, nosep, noitemsep}
+\setlist[enumerate]{leftmargin=*, nosep, noitemsep, label=(\arabic*)}
+
+\doublespacing{}
+
+\begin{document}
+
+\begin{titlepage}
+	\colorbox{black!5}{%
+		\parbox[t]{0.975\textwidth}{%
+			\parbox[t]{0.95\textwidth}{%
+				\raggedleft\vspace{0.75cm}\Huge\scshape
+				Research Manual \\[7.5pt]
+				\large\bfseries A Guide to Effective Policy Advocacy
+				\vspace{0.75cm}
+			}
+		}
+	}
+	\vfill
+	\parbox[t]{0.95\textwidth}{%
+		\hfill\rule{0.15\linewidth}{0.5pt}\\[7.5pt]
+		\raggedleft{}
+		\textcopyright:{Zac Kienzle\textsuperscript{\textdagger}}\\[4pt]
+		\normalsize\textsuperscript{\textdagger} University of Queensland, Brisbane, Australia\\
+		\hfill\rule{0.15\linewidth}{0.5pt}
+	}
+\end{titlepage}
+
+\tableofcontents
+
+\section{Preliminary Setup}
+This is a citation example
+\citep{althaus_australian_2023}
+
+\section{Resources and Toolings}
+Where to go to get stuff moving.
+Central repository of research already done.
+Previous/sample papers annotated to get an idea of how to create
+
+Templates
+Links to take you to the Overleaf/whatever way we want to actually style documents.
+
+\section{Research Workflows}
+Websites to go to/ repos with evidence, papers, legal cases
+Identify the best resources for each discipline, allowing us to learn from all our members. Send it around to see which links/websites we are missing.
+Guide on how to effectively use Boolean searching and database searching. Links to databases and how to use them.
+Pressing concerns/potential areas ripe for research/policy reform that may influence working groups (of course, this isn’t the only source of topic selection). Bills that are being passed, topical subjects.
+
+\section{Advocacy Workflows}
+How to translate long-form into short-form content as a learning experience to post on social media sites.
+
+\section{Stylistic Conventions}
+Fonts, general writing styles, excerpts from policy papers, publishing bodies and institutions we are trying to recreate the theming/styling from
+
+\section{Integrity and Ethics Pledge}
+Fair use of generative AI, machine translation, how to cite/attribute, how to use it effectively, plagiarism, integrity pledge and so on.
+
+
+\printbibliography{}
+\end{document}

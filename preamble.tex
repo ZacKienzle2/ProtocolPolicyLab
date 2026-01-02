@@ -1,5 +1,3 @@
-\documentclass[12pt, a4paper]{article}
-
 % encoding and microtype
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -313,4 +311,34 @@
 \renewcommand{\textflush}{flushright}
 \renewcommand{\sourceflush}{flushright}
 
-\newcommand{\preambleloaded}{true}
+% bibliography and refs
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[style=authoryear,backend=biber,natbib=true,doi=true]{biblatex}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage[nameinlink]{cleveref}
+\usepackage[shortlabels]{enumitem}
+
+\addbibresource{references.bib}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=darkblue,
+	citecolor=darkblue,
+	filecolor=darkblue,
+	urlcolor=darkblue,
+	breaklinks=true,
+	pdfborder={0 0 0}
+}
+\setlist[itemize]{leftmargin=*, nosep, noitemsep}
+\setlist[enumerate]{leftmargin=*, nosep, noitemsep, label=(\arabic*)}
+
+% cleveref aliases
+\crefname{tcb@cnt@thm}{Theorem}{Theorems}
+\crefname{tcb@cnt@cor}{Corollary}{Corollaries}
+\crefname{tcb@cnt@lem}{Lemma}{Lemmas}
+\crefname{tcb@cnt@prop}{Proposition}{Propositions}
+\crefname{tcb@cnt@defn}{Definition}{Definitions}
+
+\doublespacing{}

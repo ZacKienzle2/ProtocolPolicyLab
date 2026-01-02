@@ -1,13 +1,13 @@
 # Protocol Policy Lab Research Repository
 
-This repository serves as the central version control system for policy research output produced by The Protocol. It contains the standardized LaTeX preambles, the master bibliography database, and the requisite build scripts to ensure formatting consistency across all publications.
+This repository serves as the central version control system for policy research output produced by The Protocol. It contains the standardised LaTeX preambles, the master bibliography database, and the requisite build scripts to ensure formatting consistency across all publications.
 
 ## Prerequisites
 
-To utilize this environment locally, the following software must be installed on your workstation.
+To utilise this environment locally, the following software must be installed on your workstation.
 
 **Git**
-This is required for version control and file synchronization.
+This is required for version control and file synchronisation.
 * **Windows:** Install Git for Windows.
 * **macOS:** Install via the Xcode Command Line Tools or the official installer.
 

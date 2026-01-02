@@ -1,36 +1,6 @@
-%&preamble
+\documentclass[12pt, a4paper]{article}
 
-% bibliography and refs
-\usepackage{algorithm}
-\usepackage{algpseudocode}
-\usepackage[style=authoryear,backend=biber,natbib=true,doi=true]{biblatex}
-\usepackage{hyperref}
-\usepackage{xurl}
-\usepackage[nameinlink]{cleveref}
-\usepackage[shortlabels]{enumitem}
-
-\addbibresource{references.bib}
-
-\hypersetup{
-    colorlinks=true,
-    linkcolor=darkblue,
-    citecolor=darkblue,
-    filecolor=darkblue,
-    urlcolor=darkblue,
-    breaklinks=true,
-    pdfborder={0 0 0}
-}
-\setlist[itemize]{leftmargin=*, nosep, noitemsep}
-\setlist[enumerate]{leftmargin=*, nosep, noitemsep, label=(\arabic*)}
-
-% cleveref aliases
-\crefname{tcb@cnt@thm}{Theorem}{Theorems}
-\crefname{tcb@cnt@cor}{Corollary}{Corollaries}
-\crefname{tcb@cnt@lem}{Lemma}{Lemmas}
-\crefname{tcb@cnt@prop}{Proposition}{Propositions}
-\crefname{tcb@cnt@defn}{Definition}{Definitions}
-
-\doublespacing{}
+\input{preamble}
 
 \begin{document}
 
@@ -114,7 +84,7 @@ For projects addressing statutory reform, the workflow necessitates a specific f
 \section{Advocacy Workflows}
 Policy advocacy necessitates a transition from passive dissemination to active \emph{Knowledge Translation (KT)}. This process extends beyond transmission to the cultivation of communities of practice, bridging the epistemic gap between evidence production and policy implementation \citep{roland_social_2018}. Tacit knowledge must be systematically converted into explicit, codified artifacts to facilitate uptake and mitigate the temporal dissonance between researchers and policymakers \citep{wagner_knowledge_2015, brownson_researchers_2006}.
 
-Digital advocacy workflows must account for opaque algorithmic mediation.  Academic social media exhibits a structural bias known as the Matthew Effect, where algorithms systematically prioritise content from established actors \citep{monteiro-krebs_trespassing_2021}. Counter-strategies must leverage the disruptive potential of small research units to introduce novel concepts \citep{wu_large_2019}.
+Digital advocacy workflows must account for opaque algorithmic mediation. Academic social media exhibits a structural bias known as the Matthew Effect, where algorithms systematically prioritise content from established actors \citep{monteiro-krebs_trespassing_2021}. Counter-strategies must leverage the disruptive potential of small research units to introduce novel concepts \citep{wu_large_2019}.
 
 Implementation requires a rejection of the deficit model in favour of narrative-driven and visual communication \citep{portman_how_2025}. Visual abstracts encapsulate methodology and recommendations, outperforming text-heavy formats in retention \citep{portman_how_2025}. Audience segmentation is critical; distinct demographics respond to divergent stimuli, necessitating platform-specific tailoring \citep{zickar_using_2020}. Credibility is maintained through explicit signalling of institutional affiliation and credentials \citep{portman_how_2025}. Evaluation prioritises engagement depth and bibliometric impact over passive vanity metrics \citep{monteiro-krebs_trespassing_2021, klar_using_2020}.
 

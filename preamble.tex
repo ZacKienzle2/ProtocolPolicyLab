@@ -1,18 +1,32 @@
+\documentclass[12pt, a4paper]{article}
+
 % encoding and microtype
+\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[activate={true,nocompatibility},tracking=true,kerning=true,spacing=false,factor=1100,stretch=10,shrink=10]{microtype}
 \microtypecontext{spacing=nonfrench}
 
-% core utilities
-\usepackage{listings}
-\usepackage{xcolor}
-\usepackage{import}
-\usepackage{etoolbox}
-\usepackage{cprotect}
-\usepackage{textcomp}
-\usepackage{calc}
+% colors
+\usepackage[table,dvipsnames]{xcolor}
+\definecolor{airforceblue}{RGB}{93,138,168}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.55}
+\definecolor{cream}{rgb}{1.0,0.99,0.82}
+\definecolor{islamicgreen}{rgb}{0.0,0.56,0.0}
+\definecolor{thmcolor}{rgb}{0.96,0.92,0.86}
+\definecolor{defncolor}{rgb}{0.93,0.96,0.98}
+\definecolor{tipcolor}{rgb}{0.94,0.97,0.94}
+\definecolor{warncolor}{rgb}{0.98,0.94,0.94}
+\definecolor{corcolor}{rgb}{0.96,0.94,0.98}
+\definecolor{datacol}{rgb}{0.8,0.33,0.0}
+\definecolor{packcol}{rgb}{0.09,0.45,0.27}
+\definecolor{methcol}{rgb}{0.16,0.32,0.75}
+\definecolor{incol}{rgb}{0.80,0.91,0.98}
+\definecolor{outcol}{gray}{0.9}
+\definecolor{codekey}{rgb}{0.0,0.0,1.0}
+\definecolor{codecomment}{rgb}{0.0,0.6,0.0}
+\definecolor{codestring}{rgb}{0.58,0.0,0.82}
 
-% math packages
+% math
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{amsthm}
@@ -23,15 +37,13 @@
 \usepackage{siunitx}
 \usepackage{nicefrac}
 \usepackage{cancel}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
 
 % fonts
 \usepackage{libertine}
 \usepackage[libertine]{newtxmath}
 \usepackage[varqu,scaled=0.95]{inconsolata}
 
-% layout
+% layout and utilities
 \usepackage[margin=1in,bindingoffset=0.5cm,headheight=15pt,twoside,marginparwidth=0.8in,marginparsep=0.1in]{geometry}
 \usepackage{setspace}
 \usepackage{multicol}
@@ -55,92 +67,65 @@
 \usepackage{subcaption}
 \usepackage{mparhack}
 \usepackage{marginnote}
-
-% graphics
-\usepackage{graphicx}
-\usepackage{pifont}
-\usepackage{tikz}
-\usepackage{pgfplots}
-\usepackage[most]{tcolorbox}
-
-% colors
-\definecolor{airforceblue}{RGB}{93,138,168}
-\definecolor{darkblue}{rgb}{0.0,0.0,0.55}
-\definecolor{cream}{rgb}{1.0,0.99,0.82}
-\definecolor{islamicgreen}{rgb}{0.0,0.56,0.0}
-\definecolor{thmcolor}{rgb}{0.96,0.92,0.86}
-\definecolor{defncolor}{rgb}{0.93,0.96,0.98}
-\definecolor{tipcolor}{rgb}{0.94,0.97,0.94}
-\definecolor{warncolor}{rgb}{0.98,0.94,0.94}
-\definecolor{corcolor}{rgb}{0.96,0.94,0.98}
-\definecolor{datacol}{rgb}{0.8,0.33,0.0}
-\definecolor{packcol}{rgb}{0.09,0.45,0.27}
-\definecolor{methcol}{rgb}{0.16,0.32,0.75}
-\definecolor{incol}{rgb}{0.80,0.91,0.98}
-\definecolor{outcol}{gray}{0.9}
-\definecolor{codekey}{rgb}{0.0,0.0,1.0}
-\definecolor{codecomment}{rgb}{0.0,0.6,0.0}
-\definecolor{codestring}{rgb}{0.58,0.0,0.82}
+\usepackage{etoolbox}
+\usepackage{calc}
+\usepackage{import}
+\usepackage{cprotect}
+\usepackage{textcomp}
+\usepackage[acronym,toc,nonumberlist]{glossaries}
+\usepackage{epigraph}        % epigraphs
 
 % headers
 \usepackage{fancyhdr}
 \setlength{\headheight}{15pt}
-
 \newcommand{\cornerpagenum}{%
 	\begin{tikzpicture}[baseline=(n.base)]
 		\node(n)[inner sep=4pt,font=\small\bfseries] {\thepage};
 		\draw[airforceblue,thin] (n.north east) -- (n.north west) -- (n.south west);
 	\end{tikzpicture}%
 }
-
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0.4pt}
-
-% section sets left mark and clears right mark (no fallback)
 \renewcommand{\sectionmark}[1]{\markboth{\thesection\quad #1}{}}
-% subsection sets right mark only
 \renewcommand{\subsectionmark}[1]{\markright{\thesubsection\quad #1}}
-
-% static placement: section left subsection right
 \fancyhead[L]{\scshape\nouppercase{\leftmark}}
 \fancyhead[R]{\bfseries\nouppercase{\rightmark}}
 \fancyfoot[R]{\cornerpagenum}
-
-% plain style
 \fancypagestyle{plain}{
 	\fancyhf{}
 	\renewcommand{\headrulewidth}{0pt}
 	\fancyfoot[R]{\cornerpagenum}
 }
 
-% references
-\usepackage{hyperref}
-\usepackage{xurl}
-\usepackage[nameinlink]{cleveref}
-\usepackage[shortlabels]{enumitem}
-\usepackage[acronym,toc,nonumberlist]{glossaries}
-\usepackage[style=authoryear,backend=biber,natbib=true,doi=true]{biblatex}
-
-% tikz config
-\pgfplotsset{compat=1.18}
-\usepgfplotslibrary{external,fillbetween}
-\tcbset{shield externalize}
-\usetikzlibrary{matrix,calc,positioning,arrows.meta,intersections,chains,shapes.geometric,patterns,fpu}
-
-% titles
+% section titles
 \titlespacing*{\part}{0pt}{0pt}{0pt}
 \newcommand{\sectionbreak}{\clearpage}
-\titleformat{\section}{\singlespacing\color{darkblue}\normalfont\Large\bfseries}{\thesection}{1em}{} % chktex 1
+\titleformat{\section}{\singlespacing\color{darkblue}\normalfont\Large\bfseries}{\thesection}{1em}{}
 \titlespacing*{\section}{0pt}{1.5ex plus 1ex minus .2ex}{1ex plus .2ex}
-\titleformat{\subsection}{\singlespacing\color{darkblue}\normalfont\large\bfseries}{\thesubsection}{1em}{} % chktex 1
+\titleformat{\subsection}{\singlespacing\color{darkblue}\normalfont\large\bfseries}{\thesubsection}{1em}{}
 \titlespacing*{\subsection}{0pt}{1.5ex plus 1ex minus .2ex}{0.8ex plus .2ex}
-\titleformat{\subsubsection}{\singlespacing\color{darkblue}\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{} % chktex 1
+\titleformat{\subsubsection}{\singlespacing\color{darkblue}\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
 \titlespacing*{\subsubsection}{0pt}{1.5ex plus 1ex minus .2ex}{0.8ex plus .2ex}
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5}
 
-% macros
+% graphics and tikz
+\usepackage{graphicx}
+\usepackage{pifont}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{external,fillbetween}
+\usetikzlibrary{matrix,calc,positioning,arrows.meta,intersections,chains,shapes.geometric,patterns,fpu}
+
+% code listings and boxes
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\tcbset{shield externalize}
+\tcbuselibrary{skins,breakable,theorems,listings}
+
+% delimiters
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 \DeclarePairedDelimiter\bra{\langle}{\rvert}
@@ -148,7 +133,10 @@
 \DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
 \DeclarePairedDelimiterX\inner[2]{\langle}{\rangle}{#1, #2}
 \DeclarePairedDelimiter\set{\{}{\}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
+% math macros
 \newcommand{\bb}[1]{\mathbb{#1}}
 \newcommand{\vect}[1]{\boldsymbol{#1}}
 \renewcommand{\v}[1]{\boldsymbol{#1}}
@@ -160,7 +148,33 @@
 \let\simind\indsim \let\simiid\iidsim \let\eqdistr\distreq
 \newcommand{\gvn}{\,|\,}
 \newcommand{\e}{\mathrm{e}}
+\newcommand{\di}{\mathrm{d}}
 \newcommand{\I}{\mathds{1}}
+\newcommand{\bincof}[2]{{{#1} \choose {#2}}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Pm}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Levy}{L\'{e}vy}
+\newcommand{\Ito}{It\^{o}}
+
+% operators with proper spacing
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% convergence arrows
+\newcommand{\cas}{\xrightarrow{\mathrm{a.s.}}}
+\newcommand{\convdistr}{\xrightarrow{d}}
 
 % distributions
 \newcommand{\Ber}{\mathsf{Ber}} \let\ber\Ber
@@ -185,8 +199,9 @@
 \newcommand{\Student}{\mathsf{t}} \let\student\Student
 \newcommand{\Mnom}{\mathsf{Mnom}} \let\mnom\Mnom
 \newcommand{\Unif}{\EuScript{U}} \let\U\Unif
+\newcommand{\Fdist}{\mathsf{F}}
 
-% helpers
+% helper macros
 \newcommand{\code}[1]{{\normalfont\ttfamily\hyphenchar\font=-1 #1}}
 \newcommand{\file}[1]{\texttt{#1}}
 \newcommand{\dataset}[1]{\texttt{#1}}
@@ -195,7 +210,7 @@
 \newcommand{\query}[1]{\marginpar{\vspace*{5pt}\fbox{\parbox{0.9\marginparwidth}{\scriptsize\sffamily\raggedright\textcolor{red}{\textbf{AQ:}} #1}}}}
 \newcommand{\mnote}[2]{\marginnote{\setlength{\parskip}{2pt}\raggedright\textcolor{airforceblue}{\textbf{#1}}\\[2pt]\color{black!85} #2}[0cm]}
 
-% styles
+% box styles
 \tcbset{
 	academicbox/.style={
 			enhanced,colframe=black!35!black,coltitle=white,fonttitle=\bfseries,
@@ -205,7 +220,7 @@
 		}
 }
 
-% listings style definition
+% listing styles
 \lstdefinestyle{pythonstyle}{
 	language=Python,
 	basicstyle=\footnotesize\ttfamily,
@@ -224,21 +239,14 @@
 	morekeywords={np,random,seed,sqrt,randn,linspace,r_,cumsum,exp,cumprod,reshape,axis}
 }
 
-% theorems
+% theorem environments
 \newtcbtheorem[auto counter,number within=section]{thm}{Theorem}{academicbox,colback=thmcolor,fontupper=\itshape}{thm}
 \newtcbtheorem[auto counter,number within=section]{cor}{Corollary}{academicbox,colback=corcolor,fontupper=\itshape}{cor}
 \newtcbtheorem[auto counter,number within=section]{lem}{Lemma}{academicbox,colback=thmcolor!70!white,fontupper=\itshape}{lem}
 \newtcbtheorem[auto counter,number within=section]{prop}{Proposition}{academicbox,colback=thmcolor!50!white,fontupper=\itshape}{prop}
 \newtcbtheorem[auto counter,number within=section]{defn}{Definition}{academicbox,colback=defncolor,colframe=airforceblue,colbacktitle=airforceblue,fontupper=\upshape}{defn}
 
-% referencing aliases for tcolorbox counters
-\crefname{tcb@cnt@thm}{Theorem}{Theorems}
-\crefname{tcb@cnt@cor}{Corollary}{Corollaries}
-\crefname{tcb@cnt@lem}{Lemma}{Lemmas}
-\crefname{tcb@cnt@prop}{Proposition}{Propositions}
-\crefname{tcb@cnt@defn}{Definition}{Definitions}
-
-% alerts
+% alert boxes
 \newtcolorbox{xattention}{
 	enhanced,breakable,colback=warncolor,colframe=black!35!black,
 	drop shadow,arc=5mm,sharp corners=uphill,
@@ -252,19 +260,17 @@
 	overlay={\node[anchor=west,xshift=-10mm] at (frame.west) {\Huge\ding{45}};}
 }
 
-% python boxes
+% code listings
 \newtcblisting{Pcode}[1]{
 	breakable,listing only,colback=cream,colframe=red!5!black,
 	colbacktitle=black,enhanced,attach boxed title to top center={xshift=-3cm,yshift=-2mm},
 	arc=0mm,title={{\ttfamily\large #1}},
 	listing options={style=pythonstyle}
 }
-
 \newtcblisting{PC}{
 	breakable,listing only,colback=cream,enhanced,sharpish corners,boxrule=1pt,
 	listing options={style=pythonstyle,numbers=none,xleftmargin=-10pt,aboveskip=-4pt,belowskip=-6pt}
 }
-
 \newtcblisting{PC1}[2]{
 	breakable,listing only,colback=cream,enhanced,
 	attach boxed title to top left={yshift=-0.5mm},
@@ -273,7 +279,7 @@
 	listing options={style=pythonstyle,numbers=none,xleftmargin=-10pt,aboveskip=-4pt,belowskip=-6pt}
 }
 
-% legacy pin and pout
+% legacy environments
 \lstnewenvironment{Pin}{%
 	\lstset{
 		backgroundcolor=\color{incol},
@@ -286,7 +292,6 @@
 		columns=fixed
 	}
 }{}
-
 \lstnewenvironment{Pout}{%
 	\lstset{
 		backgroundcolor=\color{outcol},
@@ -300,3 +305,12 @@
 		columns=fixed
 	}
 }{}
+
+\newcommand{\dc}[3][]{\lettrine[lines=2,findent=0.5em,nindent=0em,#1]{#2}{#3}}
+
+\setlength{\epigraphwidth}{0.6\textwidth}
+\setlength{\epigraphrule}{0pt}
+\renewcommand{\textflush}{flushright}
+\renewcommand{\sourceflush}{flushright}
+
+\newcommand{\preambleloaded}{true}

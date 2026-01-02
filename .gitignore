@@ -159,6 +159,7 @@ acs-*.bib
 *-concordance.tex
 # TODO Uncomment the next line if you use knitr and want to ignore its generated tikz files
 # *.tikz
+tikz_cache/
 *-tikzDictionary
 
 # latexindent will create succesive backup files by default
@@ -324,3 +325,10 @@ TSWLatexianTemp*
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
+
+# Python automation artifacts
+__pycache__/
+*.py[cod]
+
+# VS Code workspace state
+.history/

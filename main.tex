@@ -1,6 +1,14 @@
- \documentclass[12pt, a4paper]{article} %, draft , twoside
+%&preamble
 
-\input{preamble.tex}
+% bibliography and refs
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[style=authoryear,backend=biber,natbib=true,doi=true]{biblatex}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage[nameinlink]{cleveref}
+\usepackage[shortlabels]{enumitem}
+
 \addbibresource{references.bib}
 
 \hypersetup{
@@ -14,6 +22,13 @@
 }
 \setlist[itemize]{leftmargin=*, nosep, noitemsep}
 \setlist[enumerate]{leftmargin=*, nosep, noitemsep, label=(\arabic*)}
+
+% cleveref aliases
+\crefname{tcb@cnt@thm}{Theorem}{Theorems}
+\crefname{tcb@cnt@cor}{Corollary}{Corollaries}
+\crefname{tcb@cnt@lem}{Lemma}{Lemmas}
+\crefname{tcb@cnt@prop}{Proposition}{Propositions}
+\crefname{tcb@cnt@defn}{Definition}{Definitions}
 
 \doublespacing{}
 
@@ -43,28 +58,82 @@
 \tableofcontents
 
 \section{Preliminary Setup}
-This is a citation example
-\citep{althaus_australian_2023}
+\dc{O}{perational} efficacy within the Protocol Policy Lab is predicated on the standardisation of administrative workflows to mitigate coordination friction and preserve institutional memory. Adherence to structured protocols is essential for maintaining the integrity of the research lifecycle, ensuring that administrative outputs are as reproducible and transparent as the research itself \citep{sandve_ten_2013, peng_reproducible_2011}. To facilitate this consistency, the Lab mandates the use of the \href{https://docs.google.com/document/d/1G5oCMX8XFatLzgqDPwQhQL8WRm1X3_c6qnPlKSOUtlI/edit?tab=t.0#heading=h.fknbpkl3r63c}{Master Calendar} for temporal coordination and the \href{https://docs.google.com/document/d/1G_uVGeUFn-gCMCxsF1tsPbyrPrI1-gZtjvGQvRfeTkU/edit?tab=t.0#heading=h.6w2yvdtb66u5}{Meeting Minutes Template} for the accurate preservation of internal discourse. Furthermore, all new initiatives must be structured via the \href{https://docs.google.com/document/d/1SM7NsaTRETGRu2MyZ23RfOxjCGJVJVoN3rsEuHqDyYI/edit?tab=t.0}{Project Proposal Template}. At the same time, the communication of outcomes requires the \href{https://docs.google.com/document/d/1rq1zVOS8tVxV47zM9dujD1wKn2uE1Cur2b-MFdnZ7qs/edit?tab=t.0}{Director's Summary for Prospectus Template}, ensuring that all outputs remain consistent with established practices in scientific administration \citep{wilson_good_2017}.
 
 \section{Resources and Toolings}
-Where to go to get stuff moving.
-Central repository of research already done.
-Previous/sample papers annotated to get an idea of how to create
 
-Templates
-Links to take you to the Overleaf/whatever way we want to actually style documents.
+\dc{E}{ffective} policy research necessitates a transition from \textit{ad hoc} searching to systematic discovery. Researchers should adopt the \href{https://www.prisma-statement.org/}{PRISMA Statement} (Preferred Reporting Items for Systematic Reviews and Meta-Analyses) to ensure transparency and replicability in literature synthesis. The parameters for high-impact evidence gathering are defined by established protocols for professional literature reviews \citep{watson_how_2020}. Robust literature searching requires a structured, step-by-step approach to identify, select, and synthesise sources \citep{chigbu_science_2023}, ensuring that review articles maintain a specific purpose and structure \citep{palmatier_review_2018}.
+
+\begin{table}[ht]
+	\centering
+	\caption{Common Literature Search Terminology \citep{watson_how_2020,de_brun_searching_2014}}
+	\label{tab:SearchTerms}
+	\begin{tabularx}{\textwidth}{@{} l X @{}}
+		\toprule
+		\textbf{Term}     & \textbf{Meaning}                                                                                                                                                                              \\
+		\midrule
+		Boolean operators & Words (AND, OR and NOT) that can be used to combine search terms in order to widen or limit the search result.                                                                                \\
+		\addlinespace
+		Database          & An online collection of citations to journal articles, which have been indexed to make retrieval easier. Some databases also provide full-text access to the articles.                        \\
+		\addlinespace
+		Limits            & Options within a database that allow search results to be broken down further. Common limits include year(s) of publication, document type, and language.                                     \\
+		\addlinespace
+		Search strategy   & The list of search terms and limits used to retrieve relevant articles from a database in order to answer a search question.                                                                  \\
+		\addlinespace
+		Subject headings  & Terms assigned to describe a concept that may have many alternative keywords. These keywords are brought together under this single term. Most health-related databases use subject headings. \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+Primary discovery prioritises repositories of grey literature and legislative movements over general search engines to ensure that analysis remains current and non-derivative. The \href{https://apo.org.au/}{Analysis \& Policy Observatory (APO)} serves as the essential repository for Australian policy. \href{https://policycommons.net/}{Policy Commons} provides access to global think-tank outputs and preserves evidence that frequently vanishes from official governmental domains. For real-time tracking of legislative intent, researchers consult the \href{https://www.aph.gov.au/Parliamentary_Business/Hansard}{Hansard Archive} to analyse second reading speeches and committee transcripts.
+
+Statistical authority and legal currency provide the empirical foundations for policy advocacy. \href{https://www.austlii.edu.au/}{AustLII} and \href{https://www.austlii.edu.au/lawcite/}{LawCite} serve to verify the status of statutory interpretations and judicial precedents. For standardised socio-economic benchmarking, the \href{https://www.oecd-ilibrary.org/}{OECD iLibrary} and \href{https://data.worldbank.org/}{World Bank Open Data} provide high levels of cross-jurisdictional reliability. Recommendations for social intervention require cross-referencing with \href{https://www.campbellcollaboration.org/}{The Campbell Collaboration} to ensure that proposed policies are grounded in causal efficacy and proven social outcomes.
+
+Rigorous methodological design and reporting integrity depend on adherence to international frameworks. The \href{https://www.equator-network.org/}{EQUATOR Network} provides specific reporting guidelines, such as the STROBE statement, for observational studies. Hands-on toolkits for finding evidence provide the technical skills required for comprehensive evidence synthesis. All policy analysis follows structured frameworks for effective problem solving with a specific focus on the \textit{Assemble Evidence} and \textit{Select Criteria} phases \citep{de_brun_searching_2014, bardach_practical_2024}.
+
+To maintain bibliometric stability, all research artifacts are version-controlled in the \href{https://github.com/ZacKienzle2/ProtocolPolicyLab}{Protocol Policy Lab Repository} and typeset via \href{https://www.overleaf.com/}{Overleaf}.
+
+\subsection{Github Repositories and CLI Tools}
+The Protocol Policy Lab employs distributed Version Control Systems (VCS) to establish a rigorous epistemic infrastructure for policy advocacy. Unlike traditional file management, which is susceptible to versioning ambiguity and data loss, a Git-based workflow enforces the creation of an immutable audit trail for all research artifacts \citep{ram_git_2013}. This approach situates the Lab's output within a high-integrity reproducibility spectrum, transforming static policy claims into verifiable derivatives of a transparent analytical process \citep{peng_reproducible_2011}.
+
+Data manipulation scripts and analytical code are treated as primary research outputs rather than ephemeral tooling; consequently, all custom scripts must be version-controlled to ensure the precise retrieval of the logic underpinning specific policy recommendations \citep{sandve_ten_2013}. To mitigate the risks associated with manual graphical user interface (GUI) interactions, Command Line Interface (CLI) tools are utilised to script and automate analysis pipelines, ensuring that data processing remains consistent, transparent, and independent of human error \citep{wilson_good_2017}.
+
+\subsection{Overleaf}
+
+The Lab utilises Overleaf to maintain high standards of typesetting consistency and bibliometric precision across all deliverables. While WYSIWYG editors provide expediency for simple text generation, \LaTeX{} demonstrates superior stability for managing complex document structures and mathematical notation \citep{knauff_efficiency_2014}. The utility of this environment lies in the strict decoupling of content from formatting; this forces researchers to focus on argumentative rigour while the underlying class files automatically enforce the stylistic templates mandated by government standards \citep{knauff_efficiency_2014}.
+
+
 
 \section{Research Workflows}
-Websites to go to/ repos with evidence, papers, legal cases
-Identify the best resources for each discipline, allowing us to learn from all our members. Send it around to see which links/websites we are missing.
-Guide on how to effectively use Boolean searching and database searching. Links to databases and how to use them.
-Pressing concerns/potential areas ripe for research/policy reform that may influence working groups (of course, this isn’t the only source of topic selection). Bills that are being passed, topical subjects.
+\dc{E}{ffective} policy research within the Lab operates through a structured lifecycle designed to bridge the gap between academic inquiry and political decision-making \citep{brownson_researchers_2006}. To ensure relevance, working groups must engage in active agenda setting rather than passive observation. This involves identifying ``policy windows'', transient opportunities where problem streams, political events, and policy solutions converge \citep{weible_theories_2023}. Researchers are expected to monitor the legislative calendar via the repositories identified in the previous section, specifically targeting Bills entering the Second Reading stage or Committee review, where nonpartisan analysis can most effectively influence the legislative outcome \citep{hird_policy_2005, birkland_introduction_2020}.
+
+Once a topic is secured, the investigative phase employs the ``Eightfold Path'' to rigorously define the problem and select evaluation criteria before data collection begins \citep{bardach_practical_2024}. The literature search must be executed systematically; researchers apply the Boolean logic and database limits detailed in \Cref{tab:SearchTerms} to construct reproducible search strings \citep{watson_how_2020}. This adherence to the PRISMA reporting guidelines ensures that evidence synthesis is comprehensive and free from selection bias, distinguishing rigorous policy analysis from partisan advocacy \citep{page_prisma_2021}.
+
+For projects addressing statutory reform, the workflow necessitates a specific focus on legal interpretation. Researchers must utilise \textit{LawCite} and \textit{AustLII} to trace the legislative history and judicial application of relevant Acts. This ensures that recommendations are grounded in a correct understanding of statutory purpose and the ``mischief'' the law intends to remedy \citep{barnes_modern_2023}. Finally, the Lab leverages the specific dynamics of team composition to maximise impact. While large teams are often associated with developing existing ideas, we deploy smaller, agile research units to produce the disruptive, high-impact concepts necessary to challenge prevailing policy paradigms \citep{wu_large_2019}.
 
 \section{Advocacy Workflows}
-How to translate long-form into short-form content as a learning experience to post on social media sites.
+Policy advocacy necessitates a transition from passive dissemination to active \emph{Knowledge Translation (KT)}. This process extends beyond transmission to the cultivation of communities of practice, bridging the epistemic gap between evidence production and policy implementation \citep{roland_social_2018}. Tacit knowledge must be systematically converted into explicit, codified artifacts to facilitate uptake and mitigate the temporal dissonance between researchers and policymakers \citep{wagner_knowledge_2015, brownson_researchers_2006}.
+
+Digital advocacy workflows must account for opaque algorithmic mediation.  Academic social media exhibits a structural bias known as the Matthew Effect, where algorithms systematically prioritise content from established actors \citep{monteiro-krebs_trespassing_2021}. Counter-strategies must leverage the disruptive potential of small research units to introduce novel concepts \citep{wu_large_2019}.
+
+Implementation requires a rejection of the deficit model in favour of narrative-driven and visual communication \citep{portman_how_2025}. Visual abstracts encapsulate methodology and recommendations, outperforming text-heavy formats in retention \citep{portman_how_2025}. Audience segmentation is critical; distinct demographics respond to divergent stimuli, necessitating platform-specific tailoring \citep{zickar_using_2020}. Credibility is maintained through explicit signalling of institutional affiliation and credentials \citep{portman_how_2025}. Evaluation prioritises engagement depth and bibliometric impact over passive vanity metrics \citep{monteiro-krebs_trespassing_2021, klar_using_2020}.
 
 \section{Stylistic Conventions}
-Fonts, general writing styles, excerpts from policy papers, publishing bodies and institutions we are trying to recreate the theming/styling from
+\dc{D}{eliverables} must strictly adhere to the \href{https://www.stylemanual.gov.au/}{Australian Government Style Manual} to ensure institutional legitimacy and accessibility. The fundamental rhetorical framework is the inverted pyramid, which necessitates the positioning of conclusions and primary recommendations at the document's outset to accommodate the scanning behaviour of policy stakeholders.
+
+Syntactic structures must favour the active voice to eliminate ambiguity regarding agency, while sentence length should be constrained to a maximum of 25 words to mitigate cognitive load and maximise retention. Paragraphs are restricted to a single thematic focus, initiated by a topic sentence that explicitly states the central argument or a transition sentence that establishes logical continuity with preceding text.
+
+Orthographic conventions strictly adhere to Australian English, utilising the \textit{Macquarie Dictionary} or the \textit{Australian Concise Oxford Dictionary} as the arbiters of spelling. Capitalisation follows a minimalist protocol: headings and subheadings employ sentence case, and initial capitals are reserved exclusively for proper nouns and specific entities such as ``Australian Government'' or ``Cabinet''. At the same time, generic references to departments or ministerial positions are still lowercase.
+
+Punctuation serves a functional rather than decorative role; the spaced en dash ($--$) replaces the em dash for parenthetical isolation or abrupt tonal shifts, whereas unspaced en dashes are restricted to numerical spans in tables or titles. The serial comma is omitted unless required to resolve immediate syntactic ambiguity within complex lists \citep{stone_chasing_2017}.
+
+Typographical hierarchy is maintained through the use of sans-serif typefaces such as Arial or Helvetica to ensure digital legibility. Italics are reserved exclusively for the titles of Acts of Parliament, legal cases, complete published works, and scientific nomenclature, while foreign loanwords absorbed into standard English require no typographic variation. Possessive apostrophes are omitted from descriptive noun phrases, such as ``drivers licence'' or ``workers compensation'', as these denote category rather than ownership. Acronyms and initialisms must be devoid of full stops and explicitly defined upon first occurrence, unless the shortened form is more widely recognised than the full term.
+
+Numerical expressions follow a strict binary protocol to enhance readability. Integers from 2 upwards are rendered as numerals, while zero and one are written as words to prevent visual confusion with the letters ``O'' and ``I'', respectively. Commas are mandatory for numbers with four or more digits. Date formats must utilise the sequence Day Month Year without internal commas, employing non-breaking spaces to preserve line integrity. Temporal expressions use the 12-hour clock with a colon separator and a non-breaking space before the meridian indicator, except in technical contexts where the 24-hour clock is permissible for precision. Large rounded numbers (millions and above) combine numerals with words (e.g., ``2.5 million'') to facilitate rapid cognitive processing.
+
+Bibliographic citations follow the Author-Date system to maintain flow within non-legal text. In-text citations must appear in parentheses, while the reference list requires full bibliographic details ordered alphabetically. To enhance digital utility, titles of online resources in the reference list must be hyperlinked, avoiding the display of raw URLs unless the document is intended for print. Legal citations require a distinct protocol, where the titles of Acts and cases are italicised in the body text but rendered in roman type within reference lists to enhance readability.
+
+Tables and figures must be self-explanatory, featuring captions that include the unit of measurement and data source, ensuring that information is not solely conveyed through colour differentiation.
 
 \section{Integrity and Ethics Pledge}
 Fair use of generative AI, machine translation, how to cite/attribute, how to use it effectively, plagiarism, integrity pledge and so on.

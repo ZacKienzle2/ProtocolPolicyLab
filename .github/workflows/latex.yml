@@ -59,7 +59,7 @@ jobs:
           persist-credentials: false
 
       - name: Compile
-        uses: xu-cheng/latex-action@b8b50f5db98f7ade45f6da99c4dd92a14b6ed5e1 # v3
+        uses: xu-cheng/latex-action@e2f99d4b3685b0da93f97e1b86ad8fab81105098 # v3
         with:
           root_file: ${{ matrix.root_file }}
           latexmk_use_lualatex: false

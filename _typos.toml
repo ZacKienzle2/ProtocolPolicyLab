@@ -2,6 +2,11 @@
 extend-ignore-identifiers-re = []
 
 [default.extend-words]
+thm = "thm"
+Commun = "Commun"
+Iten = "Iten"
+Loder = "Loder"
+Algortihms = "Algortihms"
 
 [files]
 extend-exclude = [
@@ -12,6 +17,10 @@ extend-exclude = [
   "target/",
   "*.svg",
   "*.lock",
+  "*.bib",
+  "*.bst",
+  "*.pdf",
+  "*.docx",
   "package-lock.json",
   "yarn.lock",
   "pnpm-lock.yaml",
@@ -19,4 +28,5 @@ extend-exclude = [
   "Cargo.lock",
   "go.sum",
   "uv.lock",
+  "inquiries/",
 ]

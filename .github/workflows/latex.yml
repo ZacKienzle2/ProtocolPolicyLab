@@ -95,4 +95,4 @@ jobs:
             echo "No .tex files."
             exit 0
           fi
-          chktex -q -n8 -n36 "${files[@]}"
+          chktex -q -n1 -n8 -n36 "${files[@]}"

@@ -50,10 +50,14 @@ jobs:
           ZIZMOR_VERSION: "1.5.2"
         run: |
           set -euo pipefail
+          targets=(.github/workflows)
+          if [ -d .github/actions ]; then
+            targets+=(.github/actions)
+          fi
           pipx run --spec "zizmor==${ZIZMOR_VERSION}" zizmor \
             --format sarif \
             --config .zizmor.yml \
-            .github/workflows .github/actions \
+            "${targets[@]}" \
             > zizmor.sarif
 
       - name: Upload SARIF

@@ -1,0 +1,22 @@
+[default]
+extend-ignore-identifiers-re = []
+
+[default.extend-words]
+
+[files]
+extend-exclude = [
+  ".git/",
+  "node_modules/",
+  "dist/",
+  "build/",
+  "target/",
+  "*.svg",
+  "*.lock",
+  "package-lock.json",
+  "yarn.lock",
+  "pnpm-lock.yaml",
+  "poetry.lock",
+  "Cargo.lock",
+  "go.sum",
+  "uv.lock",
+]

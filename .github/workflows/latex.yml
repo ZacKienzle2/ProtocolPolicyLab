@@ -1,0 +1,98 @@
+name: LaTeX build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/*.tex"
+      - "**/*.bib"
+      - "**/*.sty"
+      - "**/*.cls"
+      - "**/*.bst"
+      - ".latexmkrc"
+      - "StylesAndSettings/**"
+      - ".github/workflows/latex.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "**/*.tex"
+      - "**/*.bib"
+      - "**/*.sty"
+      - "**/*.cls"
+      - "**/*.bst"
+      - ".latexmkrc"
+      - "StylesAndSettings/**"
+      - ".github/workflows/latex.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: latex-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Compile main.pdf with latexmk
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@ab7a9404c0f3da075243ca237b5fac12c98deaa5 # v2
+        with:
+          egress-policy: audit
+
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
+      - name: Compile
+        uses: xu-cheng/latex-action@b8b50f5db98f7ade45f6da99c4dd92a14b6ed5e1 # v3
+        with:
+          root_file: main.tex
+          latexmk_use_lualatex: false
+          latexmk_shell_escape: true
+          continue_on_error: false
+          extra_system_packages: "py3-pygments"
+          post_compile: "latexmk -c"
+
+      - name: Upload main.pdf
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: main-pdf
+          path: main.pdf
+          if-no-files-found: error
+          retention-days: 14
+
+  lacheck:
+    name: Static checks (chktex)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@ab7a9404c0f3da075243ca237b5fac12c98deaa5 # v2
+        with:
+          egress-policy: audit
+
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
+      - name: Install chktex
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends chktex
+
+      - name: Run chktex
+        run: |
+          set -euo pipefail
+          mapfile -t files < <(git ls-files -- '*.tex')
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No .tex files."
+            exit 0
+          fi
+          chktex -q -n8 -n36 "${files[@]}"

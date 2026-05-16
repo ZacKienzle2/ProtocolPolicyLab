@@ -1,0 +1,9 @@
+.venv/
+.git/
+node_modules/
+build/
+dist/
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+inquiries/

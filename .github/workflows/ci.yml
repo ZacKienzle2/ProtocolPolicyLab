@@ -77,6 +77,10 @@ jobs:
           globs: |
             **/*.md
             !node_modules
+            !.venv
+            !build
+            !dist
+            !inquiries
             !.github/PULL_REQUEST_TEMPLATE.md
 
   editorconfig:

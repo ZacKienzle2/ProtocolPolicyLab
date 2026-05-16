@@ -1,4 +1,13 @@
-## Core latex/pdflatex auxiliary files:
+# Protocol Policy Lab .gitignore
+# Curated from https://www.toptal.com/developers/gitignore for: latex, python,
+# jupyternotebooks, c++, cmake, visualstudiocode, windows, macos, linux,
+# dotenv, direnv, ssh, gpg. Trimmed to what this repository actually uses.
+
+########################################
+# LaTeX
+########################################
+
+# Core pdflatex / xelatex / lualatex auxiliary files
 *.aux
 *.lof
 *.log
@@ -12,19 +21,13 @@
 *.cb2
 .*.lb
 
-## Intermediate documents:
+# Intermediate documents
 *.dvi
 *.xdv
 *-converted-to.*
-# these rules might exclude image files for figures etc.
-# *.ps
-# *.eps
-# *.pdf
-
-## Generated if empty string is given at "Please type another file name for output:"
 .pdf
 
-## Bibliography auxiliary files (bibtex/biblatex/biber):
+# Bibliography (bibtex / biblatex / biber)
 *.bbl
 *.bbl-SAVE-ERROR
 *.bcf
@@ -34,7 +37,7 @@
 *-blx.bib
 *.run.xml
 
-## Build tool auxiliary files:
+# Build tool artifacts
 *.fdb_latexmk
 *.synctex
 *.synctex(busy)
@@ -43,58 +46,30 @@
 *.pdfsync
 *.rubbercache
 rubber.cache
-
-## Build tool directories for auxiliary files
-# latexrun
 latex.out/
 
-## Auxiliary and intermediate files from other packages:
-# algorithms
+# Package-specific
 *.alg
 *.loa
-
-# achemso
 acs-*.bib
-
-# amsthm
 *.thm
-
-# attachfile2
 *.atfi
-
-# beamer
 *.nav
 *.pre
 *.snm
 *.vrb
-
-# changes
 *.soc
 *.loc
-
-# comment
 *.cut
-
-# cprotect
 *.cpt
-
-# elsarticle (documentclass of Elsevier journals)
 *.spl
-
-# endnotes
 *.ent
-
-# fixme
 *.lox
-
-# feynmf/feynmp
 *.mf
 *.mp
 *.t[1-9]
 *.t[1-9][0-9]
 *.tfm
-
-#(r)(e)ledmac/(r)(e)ledpar
 *.end
 *.?end
 *.[1-9]
@@ -109,8 +84,6 @@ acs-*.bib
 *.eledsec[1-9][0-9]R
 *.eledsec[1-9][0-9][0-9]
 *.eledsec[1-9][0-9][0-9]R
-
-# glossaries
 *.acn
 *.acr
 *.glg
@@ -125,58 +98,28 @@ acs-*.bib
 *.slg
 *.slo
 *.sls
-
-# uncomment this for glossaries-extra (will ignore makeindex's style files!)
-# *.ist
-
-# gnuplot
 *.gnuplot
 *.table
-
-# gnuplottex
 *-gnuplottex-*
-
-# gregoriotex
 *.gaux
 *.glog
 *.gtex
-
-# htlatex
 *.4ct
 *.4tc
 *.idv
 *.lg
 *.trc
 *.xref
-
-# hypdoc
 *.hd
-
-# hyperref
 *.brf
-
-# knitr
 *-concordance.tex
-# TODO Uncomment the next line if you use knitr and want to ignore its generated tikz files
-# *.tikz
 tikz_cache/
 *-tikzDictionary
-
-# latexindent will create succesive backup files by default
-#*.bak*
-
-# listings
 *.lol
-
-# luatexja-ruby
 *.ltjruby
-
-# makeidx
 *.idx
 *.ilg
 *.ind
-
-# minitoc
 *.maf
 *.mlf
 *.mlt
@@ -184,151 +127,288 @@ tikz_cache/
 *.slf[0-9]*
 *.slt[0-9]*
 *.stc[0-9]*
-
-# minted
 _minted*
 *.data.minted
 *.pyg
-
-# morewrites
 *.mw
-
-# newpax
 *.newpax
-
-# nomencl
 *.nlg
 *.nlo
 *.nls
-
-# pax
 *.pax
-
-# pdfpcnotes
 *.pdfpc
-
-# sagetex
 *.sagetex.sage
 *.sagetex.py
 *.sagetex.scmd
-
-# scrwfile
 *.wrt
-
-# spelling
 *.spell.bad
 *.spell.txt
-
-# svg
 svg-inkscape/
-
-# sympy
 *.sout
 *.sympy
 sympy-plots-for-*.tex/
-
-# pdfcomment
 *.upa
 *.upb
-
-# pythontex
 *.pytxcode
 pythontex-files-*/
-
-# tcolorbox
 *.listing
-
-# thmtools
 *.loe
-
-# TikZ & PGF
 *.dpth
 *.md5
 *.auxlock
-
-# titletoc
 *.ptc
-
-# todonotes
 *.tdo
-
-# vhistory
 *.hst
 *.ver
-
-# easy-todo
 *.lod
-
-# xcolor
 *.xcp
-
-# xmpincl
 *.xmpi
-
-# xindy
 *.xdy
-
-# xypic precompiled matrices and outlines
 *.xyc
 *.xyd
-
-# endfloat
 *.ttt
 *.fff
 
-# Latexian
+# LaTeX editors
 TSWLatexianTemp*
-
-## Editors:
-# WinEdt
 *.bak
 *.sav
-
-# latexindent.pl
 *.bak[0-9]*
-
-# Texpad
 .texpadtmp
-
-# LyX
 *.lyx~
-
-# Kile
 *.backup
-
-# gummi
 .*.swp
-
-# KBibTeX
 *~[0-9]*
-
-# TeXnicCenter
 *.tps
-
-# auto folder when using emacs and auctex
 ./auto/*
 *.el
-
-# expex forward references with \gathertags
 *-tags.tex
-
-# standalone packages
 *.sta
-
-# Makeindex log files
 *.lpz
-
-# xwatermark package
 *.xwm
 
-# REVTeX puts footnotes in the bibliography by default, unless the nofootinbib
-# option is specified. Footnotes are the stored in a file with suffix Notes.bib.
-# Uncomment the next line to have this generated file ignored.
-#*Notes.bib
+########################################
+# Python
+########################################
 
-# Python automation artifacts
 __pycache__/
 *.py[cod]
+*$py.class
+.Python
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+*.egg
+.installed.cfg
+MANIFEST
 
-# VS Code workspace state
+# Test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Virtual envs
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Type checkers / linters
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+pyrightconfig.json
+
+# Tooling caches
+.pdm.toml
+__pypackages__/
+celerybeat-schedule
+celerybeat.pid
+cython_debug/
+poetry.toml
+
+# Spyder / Rope
+.spyderproject
+.spyproject
+.ropeproject
+
+########################################
+# Jupyter Notebooks
+########################################
+
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+
+########################################
+# C++ / CMake (for any future ml/ or amsSimCVaR/ side)
+########################################
+
+*.o
+*.obj
+*.lo
+*.slo
+*.ko
+*.so
+*.so.*
+*.dylib
+*.dll
+*.a
+*.la
+*.lib
+*.exe
+*.app
+*.elf
+*.gch
+*.pch
+
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+CMakeUserPresets.json
+cmake-build-*/
+
+########################################
+# Visual Studio Code
+########################################
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
 .history/
+.ionide
+
+########################################
+# JetBrains
+########################################
+
+.idea/*
+!.idea/codeStyles
+!.idea/runConfigurations
+*.iml
+*.ipr
+*.iws
+out/
+
+########################################
+# Vim / Emacs
+########################################
+
+[._]*.s[a-v][a-z]
+!*.svg
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+Session.vim
+Sessionx.vim
+.netrwhist
+tags
+[._]*.un~
+
+\#*\#
+.\#*
+.org-id-locations
+/eshell/history
+/eshell/lastdir
+/elpa/
+.cask/
+flycheck_*.el
+/server/
+.projectile
+.dir-locals.el
+
+########################################
+# direnv / dotenv / secrets
+########################################
+
+.direnv/
+.envrc
+.env
+.env.*
+!.env.example
+secring.*
+*.pem
+*.key
+id_rsa
+id_ed25519
+id_ecdsa
+id_dsa
+known_hosts
+
+########################################
+# Operating system junk
+########################################
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+########################################
+# Project-local agent and tool state
+########################################
+
+.claude/
+.cspell-cache
+.lean-ctx/
+.symdex/

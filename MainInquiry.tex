@@ -6,10 +6,8 @@
 % Parliamentary Accounts and Works Committee (PAWC) inquiry
 % into data centres.
 %
-% Structure mirrors the UQ Graduate School thesis template
-% (see main.tex for the thesis-side counterpart) but uses the
-% standard report class because uqthesis.cls is not vendored
-% in this repository.
+% Uses the standard report class and the shared Protocol Policy Lab
+% preamble in StylesAndSettings/LaTexPackages.tex.
 %
 % Shared design and macro layer:
 \documentclass[11pt,a4paper,oneside]{report}
@@ -66,10 +64,10 @@
 % ***************************************************
 % References
 % ***************************************************
-% Style: elsarticle-num produces numeric citations in citation order.
-% Switch to apalike (author-year) if the discipline calls for it.
-\bibliographystyle{elsarticle-num}
-\bibliography{References/references}
+% LaTexPackages.tex loads biblatex with backend=biber and style=authoryear.
+% Switch the global style in LaTexPackages.tex if the discipline calls for
+% numeric citations.
+\printbibliography[heading=bibintoc]
 
 % ***************************************************
 % Appendices

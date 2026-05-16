@@ -41,9 +41,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - root_file: main.tex
-            artifact_name: main-pdf
-            pdf_path: main.pdf
+          - root_file: ResearchManual.tex
+            artifact_name: researchmanual-pdf
+            pdf_path: ResearchManual.pdf
           - root_file: MainInquiry.tex
             artifact_name: maininquiry-pdf
             pdf_path: MainInquiry.pdf

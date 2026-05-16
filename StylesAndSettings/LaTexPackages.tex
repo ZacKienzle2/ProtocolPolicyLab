@@ -1,26 +1,40 @@
 % ***************************************************
-% LaTeX Packages
+% Protocol Policy Lab - shared LaTeX preamble
 % ***************************************************
-% Design and macro layer. Essential packages live in uqthesis.cls.
+% Loaded by every root document (ResearchManual.tex, MainInquiry.tex, future
+% thesis roots). One file, no duplicate package loads, no duplicate macros.
+% Conflicts resolved in favour of the Research Manual side (mathsf for
+% distributions, mathcal for filtrations) so the typography is consistent.
 
+% ----- encoding, fonts, microtype --------------------------------------------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{microtype}
-\usepackage{etoolbox}     % hook/conditional helpers used by later packages
-\usepackage{silence}      % \WarningFilter{...}{...} suppressions
-\usepackage{bm}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage[varqu,scaled=0.95]{inconsolata}
+\usepackage[activate={true,nocompatibility},tracking=true,kerning=true,spacing=false,factor=1100,stretch=10,shrink=10]{microtype}
+\microtypecontext{spacing=nonfrench}
+\usepackage{textcomp}
+\usepackage{etoolbox}
+\usepackage{silence}
+\usepackage{calc}
+\usepackage{import}
+\usepackage{cprotect}
+
+% ----- math packages ---------------------------------------------------------
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{thmtools}
+\usepackage{mathrsfs}
 \usepackage{dsfont}
+\usepackage{bm}
 \usepackage{stmaryrd}
-\usepackage{lipsum}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsthm}
-\usepackage{thmtools}     % \listoftheorems and \declaretheorem
-\usepackage{mathtools}
-\usepackage{mathrsfs}     % \mathscr{...} script letters
-\usepackage{cancel}
+\usepackage{latexsym}
 \usepackage{siunitx}
 \usepackage{nicefrac}
+\usepackage{cancel}
+\usepackage{lipsum}
+
+% ----- colour palette --------------------------------------------------------
 \usepackage[table,dvipsnames]{xcolor}
 \definecolor{airforceblue}{RGB}{93,138,168}
 \definecolor{darkblue}{rgb}{0.0,0.0,0.55}
@@ -31,68 +45,116 @@
 \definecolor{tipcolor}{rgb}{0.94,0.97,0.94}
 \definecolor{warncolor}{rgb}{0.98,0.94,0.94}
 \definecolor{corcolor}{rgb}{0.96,0.94,0.98}
+\definecolor{datacol}{rgb}{0.80,0.33,0.00}
 \definecolor{packcol}{rgb}{0.09,0.45,0.27}
 \definecolor{methcol}{rgb}{0.16,0.32,0.75}
-\usepackage{graphicx}
+\definecolor{incol}{rgb}{0.80,0.91,0.98}
+\definecolor{outcol}{gray}{0.9}
+\definecolor{codekey}{rgb}{0.0,0.0,1.0}
+\definecolor{codecomment}{rgb}{0.0,0.6,0.0}
+\definecolor{codestring}{rgb}{0.58,0.0,0.82}
+
+% ----- layout, tables, floats, lists -----------------------------------------
+\usepackage[margin=1in,bindingoffset=0.5cm,headheight=15pt,twoside,marginparwidth=0.8in,marginparsep=0.1in]{geometry}
+\usepackage{setspace}
+\usepackage{multicol,multirow,dcolumn,varwidth,tabularx,booktabs,array,longtable}
+\usepackage{ragged2e}
+\usepackage{float,placeins,rotating,wrapfig}
+\usepackage{boxedminipage,fancybox}
+\usepackage[all]{nowidow}
+\usepackage{titlesec}
+\usepackage{epigraph}
+\usepackage{lettrine}
+\usepackage{caption,subcaption}
+\usepackage{mparhack,marginnote}
+\usepackage[shortlabels]{enumitem}
+\usepackage[acronym,toc,nonumberlist]{glossaries}
+\usepackage{chngcntr}
+\usepackage{pdfpages}
+
+% ----- graphics, tikz, pgfplots ----------------------------------------------
+\usepackage{graphicx,pifont}
 \usepackage{tikz}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
-\usepgfplotslibrary{fillbetween}
+\usepgfplotslibrary{external,fillbetween}
 \usetikzlibrary{matrix,calc,positioning,arrows.meta,intersections,chains,shapes.geometric,patterns,fpu}
-\usepackage{tikz-cd}      % commutative diagrams; load after tikz
-\usepackage{geometry}
-\usepackage{fancyhdr}
-\usepackage{titlesec}
-\usepackage{caption}
-\usepackage{subcaption}
-\usepackage{float}
-\usepackage{placeins}
-\usepackage{wrapfig}
-\usepackage{rotating}
-\usepackage{chngcntr}
-\usepackage{pdfpages}
-\usepackage{setspace}
-\usepackage{multicol}
-\usepackage{multirow}
-\usepackage{dcolumn}
-\usepackage{varwidth}
-\usepackage{booktabs}
-\usepackage{ragged2e}
-\usepackage{array}
-\usepackage{enumerate}
-\usepackage{mdframed}
+\usepackage{tikz-cd}
+
+% ----- code listings, tcolorbox, algorithms ----------------------------------
+\usepackage{listings}
 \usepackage[most]{tcolorbox}
+\tcbset{shield externalize}
 \tcbuselibrary{skins,breakable,theorems,listings}
-\usepackage{algorithm}
-\usepackage{algpseudocode}
+\usepackage{algorithm,algpseudocode}
 \numberwithin{algorithm}{section}
-\usepackage{csquotes}     % \enquote{...} locale-correct quotation marks
-\usepackage{todonotes}    % \todo, \missingfigure; suppress via [disable]
-\usepackage{cite}
+\usepackage{mdframed}
+\usepackage{csquotes}
+\usepackage{todonotes}
+
+% ----- bibliography, hyperref, cleveref --------------------------------------
+\usepackage[style=authoryear,backend=biber,natbib=true,doi=true]{biblatex}
 \usepackage{hyperref}
+\usepackage{xurl}
 \usepackage[nameinlink]{cleveref}
-\usepackage{bookmark}     % replaces hyperref bookmark engine; load after hyperref
-
+\usepackage{bookmark}
+\addbibresource{References/references.bib}
 \hypersetup{
-	colorlinks=true,
-	linkcolor=darkblue,
-	citecolor=darkblue,
-	urlcolor=darkblue,
-	breaklinks=true
+    colorlinks=true,
+    linkcolor=darkblue,
+    citecolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+    breaklinks=true,
+    pdfborder={0 0 0}
 }
+\setlist[itemize]{leftmargin=*, nosep, noitemsep}
+\setlist[enumerate]{leftmargin=*, nosep, noitemsep, label=(\arabic*)}
 
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[chapter]
-\newtheorem{condition}{Condition}[chapter]
+% ----- headers, footers, section titles --------------------------------------
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\newcommand{\cornerpagenum}{%
+    \begin{tikzpicture}[baseline=(n.base)]
+        \node(n)[inner sep=4pt,font=\small\bfseries] {\thepage};
+        \draw[airforceblue,thin] (n.north east) -- (n.north west) -- (n.south west);
+    \end{tikzpicture}%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\sectionmark}[1]{\markboth{\thesection\quad #1}{}}
+\renewcommand{\subsectionmark}[1]{\markright{\thesubsection\quad #1}}
+\fancyhead[L]{\scshape\nouppercase{\leftmark}}
+\fancyhead[R]{\bfseries\nouppercase{\rightmark}}
+\fancyfoot[R]{\cornerpagenum}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[R]{\cornerpagenum}}
 
-\theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{lemma}{Lemma}[chapter]
-\newtheorem{proposition}{Proposition}[chapter]
+\titlespacing*{\part}{0pt}{0pt}{0pt}
+\newcommand{\sectionbreak}{\clearpage}
+\titleformat{\section}{\singlespacing\color{darkblue}\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{1.5ex plus 1ex minus .2ex}{1ex plus .2ex}
+\titleformat{\subsection}{\singlespacing\color{darkblue}\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{1.5ex plus 1ex minus .2ex}{0.8ex plus .2ex}
+\titleformat{\subsubsection}{\singlespacing\color{darkblue}\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{1.5ex plus 1ex minus .2ex}{0.8ex plus .2ex}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{5}
 
+% ----- instructional environment ---------------------------------------------
+% Wraps drafter guidance in a soft blue box. To suppress all instructional
+% matter for a final submission, redefine the env to \comment / \endcomment
+% in the document root after loading this file.
+\newmdenv[
+  linewidth=0.5pt,linecolor=airforceblue,backgroundcolor=defncolor,
+  innertopmargin=4pt,innerbottommargin=4pt,innerleftmargin=6pt,innerrightmargin=6pt,
+  skipabove=8pt,skipbelow=8pt
+]{instructional}
+
+% ----- Unicode shims ---------------------------------------------------------
 \DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
 
-% Latin abbreviations and idiomatic phrases.
+% ----- Latin abbreviations ---------------------------------------------------
 \newcommand{\via}{\textit{via}}
 \newcommand{\ie}{\textit{i.e.}}
 \newcommand{\eg}{\textit{e.g.}}
@@ -111,66 +173,94 @@
 \newcommand{\apriori}{\textit{a priori}}
 \newcommand{\etal}{\textit{et al.}}
 \newcommand{\naive}{na\"\i{}ve}
+\newcommand{\Levy}{L\'{e}vy}
+\newcommand{\Ito}{It\^{o}}
 
+% ----- paired delimiters -----------------------------------------------------
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 \DeclarePairedDelimiter\set{\{}{\}}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\braket[2]{\langle}{\rangle}{#1 \delimsize\vert #2}
 \DeclarePairedDelimiterX\inner[2]{\langle}{\rangle}{#1, #2}
+\DeclarePairedDelimiter\qv{\langle}{\rangle}
 
-% Number sets.
+% ----- number sets, probability spaces ---------------------------------------
+\newcommand{\bb}[1]{\mathbb{#1}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
-\newcommand{\F}{\mathbb{F}}
-
-% Probability and expectation.
+\newcommand{\F}{\mathcal{F}}
 \newcommand{\Prob}{\mathbb{P}}
+\let\Pm\Prob
 \newcommand{\E}{\mathbb{E}}
-\newcommand{\gvn}{\mid}
+\newcommand{\gvn}{\,|\,}
 \newcommand{\indep}{\perp\!\!\!\perp}
 \newcommand{\indsim}{\stackrel{\mathrm{ind}}{\sim}}
 \newcommand{\iidsim}{\stackrel{\mathrm{iid}}{\sim}}
+\newcommand{\distreq}{\stackrel{d}{=}}
+\let\simind\indsim
+\let\simiid\iidsim
+\let\eqdistr\distreq
 
-% Convergence modes for sequences of random variables and measures.
+% ----- convergence arrows ----------------------------------------------------
 \newcommand{\cvas}{\xrightarrow{\mathrm{a.s.}}}
+\let\cas\cvas
 \newcommand{\cvP}{\xrightarrow{\Prob}}
 \newcommand{\cvLp}[1]{\xrightarrow{L^{#1}}}
 \newcommand{\cvD}{\xrightarrow{d}}
+\let\convdistr\cvD
 \newcommand{\weakto}{\Rightarrow}
 
-% Indicator (preferred over \mathds{1}_{...} for uniform typesetting).
+% ----- vectors, matrices, indicator -----------------------------------------
 \newcommand{\one}{\mathds{1}}
+\let\I\one
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\renewcommand{\v}[1]{\boldsymbol{#1}}
+\newcommand{\mathem}[1]{\(\boldsymbol{#1}\)}
+\newcommand{\T}{\top}
+\newcommand{\e}{\mathrm{e}}
+\newcommand{\di}{\mathrm{d}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\dW}{\dd W}
+\newcommand{\dB}{\dd B}
+\newcommand{\bincof}[2]{{{#1} \choose {#2}}}
+\newcommand{\bx}{\boldsymbol{x}}
+\newcommand{\by}{\boldsymbol{y}}
+\newcommand{\bz}{\boldsymbol{z}}
+\newcommand{\bv}{\boldsymbol{v}}
+\newcommand{\bu}{\boldsymbol{u}}
+\newcommand{\btheta}{\boldsymbol{\theta}}
+\newcommand{\bmu}{\boldsymbol{\mu}}
+\newcommand{\bSigma}{\boldsymbol{\Sigma}}
+\newcommand{\bX}{\boldsymbol{X}}
+\newcommand{\bY}{\boldsymbol{Y}}
+\newcommand{\bZ}{\boldsymbol{Z}}
+\newcommand{\bW}{\boldsymbol{W}}
 
-% State space and measure-theoretic families.
+% ----- measure-theoretic and function-space families -------------------------
 \newcommand{\matX}{\mathcal{X}}
 \newcommand{\Borel}{\mathcal{B}}
 \newcommand{\Bb}{\mathcal{B}_b}
 \newcommand{\Cb}{\mathcal{C}_b}
 \newcommand{\Meas}{\mathcal{M}}
 \newcommand{\ProbMeas}{\mathcal{P}}
-
-% Stochastic calculus and SDE notation.
-\newcommand{\dd}{\mathrm{d}}
-\newcommand{\dW}{\dd W}
-\newcommand{\dB}{\dd B}
-\DeclarePairedDelimiter\qv{\langle}{\rangle}
-
-% Function-space and operator-norm notation.
 \newcommand{\Lp}[1]{L^{#1}}
 \newcommand{\Lploc}[1]{L^{#1}_{\mathrm{loc}}}
 \newcommand{\Hilb}{\mathcal{H}}
 \newcommand{\opnorm}[1]{\norm{#1}_{\mathrm{op}}}
 
-% Arrow shortcuts.
+% ----- arrow shortcuts -------------------------------------------------------
 \newcommand{\la}{\leftarrow}
 \newcommand{\ra}{\rightarrow}
 \newcommand{\Ra}{\Rightarrow}
 
-% Math operators. \DeclareMathOperator{*} places subscripts below in display.
+% ----- math operators --------------------------------------------------------
 \DeclareMathOperator*{\esssup}{ess\,sup}
 \DeclareMathOperator*{\essinf}{ess\,inf}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -183,6 +273,7 @@
 \DeclareMathOperator{\osc}{osc}
 \DeclareMathOperator{\Osc}{Osc}
 \DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Supp}{Supp}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\diam}{diam}
@@ -199,28 +290,131 @@
 \DeclareMathOperator{\cl}{cl}
 \DeclareMathOperator{\intr}{int}
 
-% Distributions.
-\newcommand{\Ber}{\mathrm{Ber}}
-\newcommand{\Bin}{\mathrm{Bin}}
-\newcommand{\Exp}{\mathrm{Exp}}
-\newcommand{\Gam}{\mathrm{Gamma}}
-\newcommand{\Geo}{\mathrm{Geo}}
-\newcommand{\Nor}{\mathcal{N}}
-\newcommand{\Poi}{\mathrm{Po}}
-\newcommand{\Unif}{\mathrm{Unif}}
+% ----- distribution macros (mathsf for visual distinction) -------------------
+\newcommand{\Ber}{\mathsf{Ber}}        \let\ber\Ber
+\newcommand{\Bin}{\mathsf{Bin}}        \let\bin\Bin
+\newcommand{\NegBin}{\mathsf{NegBin}}  \let\negbin\NegBin \let\nbin\NegBin \let\Nbin\NegBin
+\newcommand{\Geo}{\mathsf{Geom}}       \let\geo\Geo       \let\Geom\Geo
+\newcommand{\Poi}{\mathsf{Poi}}        \let\poi\Poi       \let\Po\Poi
+\newcommand{\Expdist}{\mathsf{Exp}}    \let\ex\Expdist
+\newcommand{\Nor}{\EuScript{N}}        \let\nor\Nor
+\newcommand{\Gam}{\mathsf{Gamma}}      \let\gam\Gam
+\newcommand{\Bet}{\mathsf{Beta}}       \let\bet\Bet
+\newcommand{\Cauchy}{\mathsf{Cauchy}}  \let\cauchy\Cauchy
+\newcommand{\Laplace}{\mathsf{Laplace}}\let\laplace\Laplace
+\newcommand{\Dir}{\mathsf{Dirichlet}}  \let\dir\Dir
+\newcommand{\Wishart}{\mathsf{Wishart}}
+\newcommand{\Pareto}{\mathsf{Pareto}}  \let\pareto\Pareto
+\newcommand{\Weib}{\mathsf{Weib}}      \let\weib\Weib
+\newcommand{\Gumbel}{\mathsf{Gumbel}}  \let\gumbel\Gumbel
+\newcommand{\Frechet}{\text{\sf Fr\'{e}chet}} \let\frechet\Frechet
+\newcommand{\Wald}{\mathsf{Wald}}      \let\InvGauss\Wald
+\newcommand{\Logistic}{\mathsf{Logistic}}\let\logistic\Logistic
+\newcommand{\Student}{\mathsf{t}}      \let\student\Student
+\newcommand{\Mnom}{\mathsf{Mnom}}      \let\mnom\Mnom
+\newcommand{\Unif}{\EuScript{U}}       \let\U\Unif
+\newcommand{\Fdist}{\mathsf{F}}
 \newcommand{\ChiSq}{\chi^{2}}
 \newcommand{\NCChiSq}{\chi^{2}_{\mathrm{nc}}}
 
-% Bold vectors and matrices.
-\newcommand{\bx}{\boldsymbol{x}}
-\newcommand{\by}{\boldsymbol{y}}
-\newcommand{\bz}{\boldsymbol{z}}
-\newcommand{\bv}{\boldsymbol{v}}
-\newcommand{\bu}{\boldsymbol{u}}
-\newcommand{\btheta}{\boldsymbol{\theta}}
-\newcommand{\bmu}{\boldsymbol{\mu}}
-\newcommand{\bSigma}{\boldsymbol{\Sigma}}
-\newcommand{\bX}{\boldsymbol{X}}
-\newcommand{\bY}{\boldsymbol{Y}}
-\newcommand{\bZ}{\boldsymbol{Z}}
-\newcommand{\bW}{\boldsymbol{W}}
+% ----- inline marker macros --------------------------------------------------
+\newcommand{\code}[1]{{\normalfont\ttfamily\hyphenchar\font=-1 #1}}
+\newcommand{\file}[1]{\texttt{#1}}
+\newcommand{\dataset}[1]{\texttt{#1}}
+\newcommand{\package}[1]{\texttt{\textcolor{packcol}{#1}}}
+\newcommand{\method}[1]{\texttt{\textcolor{methcol}{#1}}}
+\newcommand{\query}[1]{\marginpar{\vspace*{5pt}\fbox{\parbox{0.9\marginparwidth}{\scriptsize\sffamily\raggedright\textcolor{red}{\textbf{AQ:}} #1}}}}
+\newcommand{\mnote}[2]{\marginnote{\setlength{\parskip}{2pt}\raggedright\textcolor{airforceblue}{\textbf{#1}}\\[2pt]\color{black!85} #2}[0cm]}
+
+% ----- dropcap (lettrine) ----------------------------------------------------
+\newcommand{\dc}[3][]{\lettrine[lines=2,findent=0.5em,nindent=0em,#1]{#2}{#3}}
+
+% ----- tcolorbox styles + theorem boxes --------------------------------------
+\tcbset{
+    academicbox/.style={
+        enhanced,colframe=black!35!black,coltitle=white,fonttitle=\bfseries,
+        colbacktitle=black!35!black,boxed title style={sharp corners=north,rounded corners=south},
+        boxrule=0.6mm,drop fuzzy shadow,separator sign={:},
+        before skip=12pt,after skip=12pt
+    }
+}
+\newtcbtheorem[auto counter,number within=section]{thm}{Theorem}{academicbox,colback=thmcolor,fontupper=\itshape}{thm}
+\newtcbtheorem[auto counter,number within=section]{cor}{Corollary}{academicbox,colback=corcolor,fontupper=\itshape}{cor}
+\newtcbtheorem[auto counter,number within=section]{lem}{Lemma}{academicbox,colback=thmcolor!70!white,fontupper=\itshape}{lem}
+\newtcbtheorem[auto counter,number within=section]{prop}{Proposition}{academicbox,colback=thmcolor!50!white,fontupper=\itshape}{prop}
+\newtcbtheorem[auto counter,number within=section]{defn}{Definition}{academicbox,colback=defncolor,colframe=airforceblue,colbacktitle=airforceblue,fontupper=\upshape}{defn}
+
+% ----- plain amsthm environments (definition/condition; keep alongside tcb) --
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{condition}{Condition}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+% ----- alert boxes -----------------------------------------------------------
+\newtcolorbox{xattention}{
+    enhanced,breakable,colback=warncolor,colframe=black!35!black,
+    drop shadow,arc=5mm,sharp corners=uphill,
+    boxed title style={empty},
+    overlay={\node[anchor=west,xshift=-10mm] at (frame.west) {\Huge\ding{43}};}
+}
+\newtcolorbox{xtip}{
+    enhanced,breakable,colback=tipcolor,colframe=black!35!black,
+    drop shadow,arc=5mm,sharp corners=uphill,
+    boxed title style={empty},
+    overlay={\node[anchor=west,xshift=-10mm] at (frame.west) {\Huge\ding{45}};}
+}
+
+% ----- code listing styles ---------------------------------------------------
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    basicstyle=\footnotesize\ttfamily,
+    numbers=left,
+    numberstyle=\tiny\color{blue},
+    stepnumber=1,
+    numbersep=7pt,
+    backgroundcolor=\color{cream},
+    rulecolor=\color{black},
+    tabsize=2,
+    breaklines=true,
+    keywordstyle=\color{codekey},
+    commentstyle=\color{codecomment},
+    stringstyle=\color{codestring},
+    upquote=true,
+    morekeywords={np,random,seed,sqrt,randn,linspace,r_,cumsum,exp,cumprod,reshape,axis}
+}
+\newtcblisting{Pcode}[1]{
+    breakable,listing only,colback=cream,colframe=red!5!black,
+    colbacktitle=black,enhanced,attach boxed title to top center={xshift=-3cm,yshift=-2mm},
+    arc=0mm,title={{\ttfamily\large #1}},
+    listing options={style=pythonstyle}
+}
+\newtcblisting{PC}{
+    breakable,listing only,colback=cream,enhanced,sharpish corners,boxrule=1pt,
+    listing options={style=pythonstyle,numbers=none,xleftmargin=-10pt,aboveskip=-4pt,belowskip=-6pt}
+}
+\newtcblisting{PC1}[2]{
+    breakable,listing only,colback=cream,enhanced,
+    attach boxed title to top left={yshift=-0.5mm},
+    title={\href{#1}{\ttfamily #2}},
+    sharpish corners,boxrule=1pt,
+    listing options={style=pythonstyle,numbers=none,xleftmargin=-10pt,aboveskip=-4pt,belowskip=-6pt}
+}
+\lstnewenvironment{Pin}{\lstset{backgroundcolor=\color{incol},belowskip=0pt,xleftmargin=3pt,xrightmargin=3pt,frame=single,framerule=0pt,basicstyle=\footnotesize\ttfamily,columns=fixed}}{}
+\lstnewenvironment{Pout}{\lstset{backgroundcolor=\color{outcol},aboveskip=-2pt,xleftmargin=4pt,xrightmargin=4pt,frame=single,upquote,framerule=1pt,basicstyle=\footnotesize\ttfamily,columns=fixed}}{}
+
+% ----- cleveref aliases for tcolorbox theorems -------------------------------
+\crefname{tcb@cnt@thm}{Theorem}{Theorems}
+\crefname{tcb@cnt@cor}{Corollary}{Corollaries}
+\crefname{tcb@cnt@lem}{Lemma}{Lemmas}
+\crefname{tcb@cnt@prop}{Proposition}{Propositions}
+\crefname{tcb@cnt@defn}{Definition}{Definitions}
+
+% ----- epigraph + spacing defaults ------------------------------------------
+\setlength{\epigraphwidth}{0.6\textwidth}
+\setlength{\epigraphrule}{0pt}
+\renewcommand{\textflush}{flushright}
+\renewcommand{\sourceflush}{flushright}
+\doublespacing{}

@@ -14,10 +14,13 @@ Central version control for policy research output produced by The Protocol. Hou
 
 ## Contents
 
-- `main.tex` - root document.
-- `preamble.tex` - shared preamble, macros, package loads.
-- `references.bib` - master bibliography.
-- `StylesAndSettings/` - shared LaTeX packages and BibTeX styles.
+- `ResearchManual.tex` - Protocol Policy Lab research manual root.
+- `MainInquiry.tex` - PAWC data centres inquiry response root.
+- `StylesAndSettings/LaTexPackages.tex` - shared preamble (packages, colours, fonts, headers, theorems, listings, macros).
+- `References/References.bib` - master bibliography.
+- `PreliminaryPages/` - abstract, declaration, contributions, AI use, acknowledgements.
+- `Chapter1/` ... `Chapter5/`, `Conclusion/`, `Appendix/` - inquiry chapter bodies.
+- `inquiries/pawc-data-centres/` - source documents (transcript, supplementary questions, factsheet, draft response).
 - `.latexmkrc` - build configuration for `latexmk`.
 - `scripts/` - Python helpers for bibliography curation, figure generation, and release tooling.
 
@@ -39,7 +42,8 @@ git clone https://github.com/ZacKienzle2/ProtocolPolicyLab.git
 cd ProtocolPolicyLab
 uv sync --frozen --all-extras
 pre-commit install --install-hooks
-latexmk -pdf main.tex
+latexmk -pdf ResearchManual.tex
+latexmk -pdf MainInquiry.tex
 ```
 
 ## Branching

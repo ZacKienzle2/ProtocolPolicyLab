@@ -1,27 +1,18 @@
 % ***************************************************
-% Protocol Policy Lab - shared LaTeX preamble
+% Protocol Policy Lab shared preamble
 % ***************************************************
-% Loaded by every root document (ResearchManual.tex, MainInquiry.tex, future
-% thesis roots). One file, no duplicate package loads, no duplicate macros.
-% Conflicts resolved in favour of the Research Manual side (mathsf for
-% distributions, mathcal for filtrations) so the typography is consistent.
+% Loaded by every document root. Single source of packages, colours, fonts,
+% headers, theorem environments, listings, alert boxes and math macros.
 
-% ----- encoding, fonts, microtype --------------------------------------------
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{libertine}
-\usepackage[libertine]{newtxmath}
-\usepackage[varqu,scaled=0.95]{inconsolata}
-\usepackage[activate={true,nocompatibility},tracking=true,kerning=true,spacing=false,factor=1100,stretch=10,shrink=10]{microtype}
-\microtypecontext{spacing=nonfrench}
-\usepackage{textcomp}
-\usepackage{etoolbox}
-\usepackage{silence}
-\usepackage{calc}
-\usepackage{import}
-\usepackage{cprotect}
 
-% ----- math packages ---------------------------------------------------------
+% ***************************************************
+% Math packages (precede newtxmath/libertine)
+% ***************************************************
+% amsmath/amssymb must load before newtxmath so newtxmath skips re-defining
+% symbols already provided by amssymb (\Bbbk in particular).
+
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{thmtools}
 \usepackage{mathrsfs}
@@ -34,7 +25,24 @@
 \usepackage{cancel}
 \usepackage{lipsum}
 
-% ----- colour palette --------------------------------------------------------
+% ***************************************************
+% Fonts and microtype
+% ***************************************************
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+\usepackage[varqu,scaled=0.95]{inconsolata}
+\usepackage[activate={true,nocompatibility},tracking=true,kerning=true,spacing=false,factor=1100,stretch=10,shrink=10]{microtype}
+\microtypecontext{spacing=nonfrench}
+\usepackage{textcomp}
+\usepackage{etoolbox}
+\usepackage{silence}
+\usepackage{calc}
+\usepackage{import}
+\usepackage{cprotect}
+
+% ***************************************************
+% Colours
+% ***************************************************
 \usepackage[table,dvipsnames]{xcolor}
 \definecolor{airforceblue}{RGB}{93,138,168}
 \definecolor{darkblue}{rgb}{0.0,0.0,0.55}
@@ -54,7 +62,9 @@
 \definecolor{codecomment}{rgb}{0.0,0.6,0.0}
 \definecolor{codestring}{rgb}{0.58,0.0,0.82}
 
-% ----- layout, tables, floats, lists -----------------------------------------
+% ***************************************************
+% Layout, tables, floats, lists
+% ***************************************************
 \usepackage[margin=1in,bindingoffset=0.5cm,headheight=15pt,twoside,marginparwidth=0.8in,marginparsep=0.1in]{geometry}
 \usepackage{setspace}
 \usepackage{multicol,multirow,dcolumn,varwidth,tabularx,booktabs,array,longtable}
@@ -72,7 +82,9 @@
 \usepackage{chngcntr}
 \usepackage{pdfpages}
 
-% ----- graphics, tikz, pgfplots ----------------------------------------------
+% ***************************************************
+% Graphics, TikZ, pgfplots
+% ***************************************************
 \usepackage{graphicx,pifont}
 \usepackage{tikz}
 \usepackage{pgfplots}
@@ -81,7 +93,9 @@
 \usetikzlibrary{matrix,calc,positioning,arrows.meta,intersections,chains,shapes.geometric,patterns,fpu}
 \usepackage{tikz-cd}
 
-% ----- code listings, tcolorbox, algorithms ----------------------------------
+% ***************************************************
+% Code listings, tcolorbox, algorithms
+% ***************************************************
 \usepackage{listings}
 \usepackage[most]{tcolorbox}
 \tcbset{shield externalize}
@@ -92,7 +106,9 @@
 \usepackage{csquotes}
 \usepackage{todonotes}
 
-% ----- bibliography, hyperref, cleveref --------------------------------------
+% ***************************************************
+% Bibliography, hyperref, cleveref
+% ***************************************************
 \usepackage[style=authoryear,backend=biber,natbib=true,doi=true]{biblatex}
 \usepackage{hyperref}
 \usepackage{xurl}
@@ -111,7 +127,9 @@
 \setlist[itemize]{leftmargin=*, nosep, noitemsep}
 \setlist[enumerate]{leftmargin=*, nosep, noitemsep, label=(\arabic*)}
 
-% ----- headers, footers, section titles --------------------------------------
+% ***************************************************
+% Headers and section titles
+% ***************************************************
 \usepackage{fancyhdr}
 \setlength{\headheight}{15pt}
 \newcommand{\cornerpagenum}{%
@@ -141,42 +159,54 @@
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5}
 
-% ----- instructional environment ---------------------------------------------
-% Wraps drafter guidance in a soft blue box. To suppress all instructional
-% matter for a final submission, redefine the env to \comment / \endcomment
-% in the document root after loading this file.
+% ***************************************************
+% Instructional environment
+% ***************************************************
+% Soft blue mdframed box for drafter guidance. Suppress for final lodgement
+% by redefining the env to \comment / \endcomment in the document root.
+
 \newmdenv[
   linewidth=0.5pt,linecolor=airforceblue,backgroundcolor=defncolor,
   innertopmargin=4pt,innerbottommargin=4pt,innerleftmargin=6pt,innerrightmargin=6pt,
   skipabove=8pt,skipbelow=8pt
 ]{instructional}
 
-% ----- Unicode shims ---------------------------------------------------------
 \DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
 
-% ----- Latin abbreviations ---------------------------------------------------
-\newcommand{\via}{\textit{via}}
-\newcommand{\ie}{\textit{i.e.}}
-\newcommand{\eg}{\textit{e.g.}}
-\newcommand{\etc}{\textit{etc.}}
-\newcommand{\vv}{\textit{vice versa}}
-\newcommand{\viz}{\textit{viz}.}
-\newcommand{\cf}{\textit{cf}.}
-\newcommand{\apr}{\textit{a priori}}
-\newcommand{\apo}{\textit{a posteriori}}
-\newcommand{\vivo}{\textit{in vivo}}
-\newcommand{\situ}{\textit{in situ}}
-\newcommand{\silico}{\textit{in silico}}
-\newcommand{\vitro}{\textit{in vitro}}
-\newcommand{\vs}{\textit{versus}}
-\newcommand{\ala}{\textit{\`{a} la}}
-\newcommand{\apriori}{\textit{a priori}}
-\newcommand{\etal}{\textit{et al.}}
-\newcommand{\naive}{na\"\i{}ve}
-\newcommand{\Levy}{L\'{e}vy}
-\newcommand{\Ito}{It\^{o}}
+% ***************************************************
+% Latin abbreviations
+% ***************************************************
+% \pplnewcommand forces an override so newtxmath's \vv (vector accent) and
+% similar upstream definitions do not shadow these textual idioms.
 
-% ----- paired delimiters -----------------------------------------------------
+\providecommand{\pplnewcommand}[2]{%
+    \expandafter\let\csname #1\endcsname\relax
+    \expandafter\newcommand\csname #1\endcsname{#2}%
+}
+\pplnewcommand{via}{\textit{via}}
+\pplnewcommand{ie}{\textit{i.e.}}
+\pplnewcommand{eg}{\textit{e.g.}}
+\pplnewcommand{etc}{\textit{etc.}}
+\pplnewcommand{vv}{\textit{vice versa}}
+\pplnewcommand{viz}{\textit{viz}.}
+\pplnewcommand{cf}{\textit{cf}.}
+\pplnewcommand{apr}{\textit{a priori}}
+\pplnewcommand{apo}{\textit{a posteriori}}
+\pplnewcommand{vivo}{\textit{in vivo}}
+\pplnewcommand{situ}{\textit{in situ}}
+\pplnewcommand{silico}{\textit{in silico}}
+\pplnewcommand{vitro}{\textit{in vitro}}
+\pplnewcommand{vs}{\textit{versus}}
+\pplnewcommand{ala}{\textit{\`{a} la}}
+\pplnewcommand{apriori}{\textit{a priori}}
+\pplnewcommand{etal}{\textit{et al.}}
+\pplnewcommand{naive}{na\"\i{}ve}
+\pplnewcommand{Levy}{L\'{e}vy}
+\pplnewcommand{Ito}{It\^{o}}
+
+% ***************************************************
+% Paired delimiters
+% ***************************************************
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 \DeclarePairedDelimiter\set{\{}{\}}
@@ -188,7 +218,9 @@
 \DeclarePairedDelimiterX\inner[2]{\langle}{\rangle}{#1, #2}
 \DeclarePairedDelimiter\qv{\langle}{\rangle}
 
-% ----- number sets, probability spaces ---------------------------------------
+% ***************************************************
+% Number sets and probability space
+% ***************************************************
 \newcommand{\bb}[1]{\mathbb{#1}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
@@ -208,7 +240,9 @@
 \let\simiid\iidsim
 \let\eqdistr\distreq
 
-% ----- convergence arrows ----------------------------------------------------
+% ***************************************************
+% Convergence arrows
+% ***************************************************
 \newcommand{\cvas}{\xrightarrow{\mathrm{a.s.}}}
 \let\cas\cvas
 \newcommand{\cvP}{\xrightarrow{\Prob}}
@@ -217,7 +251,9 @@
 \let\convdistr\cvD
 \newcommand{\weakto}{\Rightarrow}
 
-% ----- vectors, matrices, indicator -----------------------------------------
+% ***************************************************
+% Vectors, matrices, indicator, calculus shortcuts
+% ***************************************************
 \newcommand{\one}{\mathds{1}}
 \let\I\one
 \newcommand{\vect}[1]{\boldsymbol{#1}}
@@ -243,7 +279,9 @@
 \newcommand{\bZ}{\boldsymbol{Z}}
 \newcommand{\bW}{\boldsymbol{W}}
 
-% ----- measure-theoretic and function-space families -------------------------
+% ***************************************************
+% Measure-theoretic and function-space families
+% ***************************************************
 \newcommand{\matX}{\mathcal{X}}
 \newcommand{\Borel}{\mathcal{B}}
 \newcommand{\Bb}{\mathcal{B}_b}
@@ -255,12 +293,16 @@
 \newcommand{\Hilb}{\mathcal{H}}
 \newcommand{\opnorm}[1]{\norm{#1}_{\mathrm{op}}}
 
-% ----- arrow shortcuts -------------------------------------------------------
+% ***************************************************
+% Arrow shortcuts
+% ***************************************************
 \newcommand{\la}{\leftarrow}
 \newcommand{\ra}{\rightarrow}
 \newcommand{\Ra}{\Rightarrow}
 
-% ----- math operators --------------------------------------------------------
+% ***************************************************
+% Math operators
+% ***************************************************
 \DeclareMathOperator*{\esssup}{ess\,sup}
 \DeclareMathOperator*{\essinf}{ess\,inf}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -290,7 +332,9 @@
 \DeclareMathOperator{\cl}{cl}
 \DeclareMathOperator{\intr}{int}
 
-% ----- distribution macros (mathsf for visual distinction) -------------------
+% ***************************************************
+% Distribution macros (mathsf to separate from operators)
+% ***************************************************
 \newcommand{\Ber}{\mathsf{Ber}}        \let\ber\Ber
 \newcommand{\Bin}{\mathsf{Bin}}        \let\bin\Bin
 \newcommand{\NegBin}{\mathsf{NegBin}}  \let\negbin\NegBin \let\nbin\NegBin \let\Nbin\NegBin
@@ -317,7 +361,9 @@
 \newcommand{\ChiSq}{\chi^{2}}
 \newcommand{\NCChiSq}{\chi^{2}_{\mathrm{nc}}}
 
-% ----- inline marker macros --------------------------------------------------
+% ***************************************************
+% Inline marker macros
+% ***************************************************
 \newcommand{\code}[1]{{\normalfont\ttfamily\hyphenchar\font=-1 #1}}
 \newcommand{\file}[1]{\texttt{#1}}
 \newcommand{\dataset}[1]{\texttt{#1}}
@@ -325,11 +371,11 @@
 \newcommand{\method}[1]{\texttt{\textcolor{methcol}{#1}}}
 \newcommand{\query}[1]{\marginpar{\vspace*{5pt}\fbox{\parbox{0.9\marginparwidth}{\scriptsize\sffamily\raggedright\textcolor{red}{\textbf{AQ:}} #1}}}}
 \newcommand{\mnote}[2]{\marginnote{\setlength{\parskip}{2pt}\raggedright\textcolor{airforceblue}{\textbf{#1}}\\[2pt]\color{black!85} #2}[0cm]}
-
-% ----- dropcap (lettrine) ----------------------------------------------------
 \newcommand{\dc}[3][]{\lettrine[lines=2,findent=0.5em,nindent=0em,#1]{#2}{#3}}
 
-% ----- tcolorbox styles + theorem boxes --------------------------------------
+% ***************************************************
+% tcolorbox theorem boxes
+% ***************************************************
 \tcbset{
     academicbox/.style={
         enhanced,colframe=black!35!black,coltitle=white,fonttitle=\bfseries,
@@ -344,7 +390,6 @@
 \newtcbtheorem[auto counter,number within=section]{prop}{Proposition}{academicbox,colback=thmcolor!50!white,fontupper=\itshape}{prop}
 \newtcbtheorem[auto counter,number within=section]{defn}{Definition}{academicbox,colback=defncolor,colframe=airforceblue,colbacktitle=airforceblue,fontupper=\upshape}{defn}
 
-% ----- plain amsthm environments (definition/condition; keep alongside tcb) --
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{condition}{Condition}[section]
@@ -353,7 +398,9 @@
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{proposition}{Proposition}[section]
 
-% ----- alert boxes -----------------------------------------------------------
+% ***************************************************
+% Alert boxes
+% ***************************************************
 \newtcolorbox{xattention}{
     enhanced,breakable,colback=warncolor,colframe=black!35!black,
     drop shadow,arc=5mm,sharp corners=uphill,
@@ -367,7 +414,9 @@
     overlay={\node[anchor=west,xshift=-10mm] at (frame.west) {\Huge\ding{45}};}
 }
 
-% ----- code listing styles ---------------------------------------------------
+% ***************************************************
+% Python code listings
+% ***************************************************
 \lstdefinestyle{pythonstyle}{
     language=Python,
     basicstyle=\footnotesize\ttfamily,
@@ -405,14 +454,18 @@
 \lstnewenvironment{Pin}{\lstset{backgroundcolor=\color{incol},belowskip=0pt,xleftmargin=3pt,xrightmargin=3pt,frame=single,framerule=0pt,basicstyle=\footnotesize\ttfamily,columns=fixed}}{}
 \lstnewenvironment{Pout}{\lstset{backgroundcolor=\color{outcol},aboveskip=-2pt,xleftmargin=4pt,xrightmargin=4pt,frame=single,upquote,framerule=1pt,basicstyle=\footnotesize\ttfamily,columns=fixed}}{}
 
-% ----- cleveref aliases for tcolorbox theorems -------------------------------
+% ***************************************************
+% cleveref aliases for tcolorbox theorem counters
+% ***************************************************
 \crefname{tcb@cnt@thm}{Theorem}{Theorems}
 \crefname{tcb@cnt@cor}{Corollary}{Corollaries}
 \crefname{tcb@cnt@lem}{Lemma}{Lemmas}
 \crefname{tcb@cnt@prop}{Proposition}{Propositions}
 \crefname{tcb@cnt@defn}{Definition}{Definitions}
 
-% ----- epigraph + spacing defaults ------------------------------------------
+% ***************************************************
+% Epigraph and spacing defaults
+% ***************************************************
 \setlength{\epigraphwidth}{0.6\textwidth}
 \setlength{\epigraphrule}{0pt}
 \renewcommand{\textflush}{flushright}

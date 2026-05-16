@@ -1,15 +1,7 @@
 % ***************************************************
-% Protocol Policy Lab - Inquiry Response
+% Protocol Policy Lab inquiry response root document
 % ***************************************************
-%
-% Root document for the Protocol Policy Lab response to the
-% Parliamentary Accounts and Works Committee (PAWC) inquiry
-% into data centres.
-%
-% Uses the standard report class and the shared Protocol Policy Lab
-% preamble in StylesAndSettings/LaTexPackages.tex.
-%
-% Shared design and macro layer:
+
 \documentclass[11pt,a4paper,oneside]{report}
 
 \input{StylesAndSettings/LaTexPackages.tex}
@@ -41,13 +33,6 @@
 \input{PreliminaryPages/Preliminary.tex}
 \clearpage
 
-\tableofcontents
-\clearpage
-
-\listoffigures
-\listoftables
-\clearpage
-
 % ***************************************************
 % Main matter
 % ***************************************************
@@ -64,9 +49,6 @@
 % ***************************************************
 % References
 % ***************************************************
-% LaTexPackages.tex loads biblatex with backend=biber and style=authoryear.
-% Switch the global style in LaTexPackages.tex if the discipline calls for
-% numeric citations.
 \printbibliography[heading=bibintoc]
 
 % ***************************************************

@@ -1,27 +1,63 @@
-# Protocol Policy Lab Research Repository
+# Protocol Policy Lab
 
-This repository serves as the central version control system for policy research output produced by The Protocol. It contains the standardised LaTeX preambles, the master bibliography database, and the requisite build scripts to ensure formatting consistency across all publications.
+Central version control for policy research output produced by The Protocol. Houses the standardised LaTeX preamble, master bibliography database, and build scripts that enforce formatting consistency across all publications.
+
+[![CI](https://github.com/ZacKienzle2/ProtocolPolicyLab/actions/workflows/ci.yml/badge.svg)](https://github.com/ZacKienzle2/ProtocolPolicyLab/actions/workflows/ci.yml)
+[![LaTeX build](https://github.com/ZacKienzle2/ProtocolPolicyLab/actions/workflows/latex.yml/badge.svg)](https://github.com/ZacKienzle2/ProtocolPolicyLab/actions/workflows/latex.yml)
+[![CodeQL](https://github.com/ZacKienzle2/ProtocolPolicyLab/actions/workflows/codeql.yml/badge.svg)](https://github.com/ZacKienzle2/ProtocolPolicyLab/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/ZacKienzle2/ProtocolPolicyLab/badge)](https://securityscorecards.dev/viewer/?uri=github.com/ZacKienzle2/ProtocolPolicyLab)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-fe5196.svg)](https://www.conventionalcommits.org/en/v1.0.0/)
+[![SemVer](https://img.shields.io/badge/SemVer-2.0.0-blue.svg)](https://semver.org/spec/v2.0.0.html)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![Code style: ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+
+## Contents
+
+- `main.tex` - root document.
+- `preamble.tex` - shared preamble, macros, package loads.
+- `references.bib` - master bibliography.
+- `StylesAndSettings/` - shared LaTeX packages and BibTeX styles.
+- `.latexmkrc` - build configuration for `latexmk`.
+- `scripts/` - Python helpers for bibliography curation, figure generation, and release tooling.
 
 ## Prerequisites
 
-To utilise this environment locally, the following software must be installed on your workstation.
+| Tool             | Windows                      | macOS                            | Linux                                                  |
+| ---------------- | ---------------------------- | -------------------------------- | ------------------------------------------------------ |
+| Git >= 2.30      | Git for Windows              | Xcode Command Line Tools         | distro package                                         |
+| TeX distribution | MiKTeX or TeX Live           | MacTeX                           | TeX Live                                               |
+| Python 3.12      | installed via `uv`           | installed via `uv`               | installed via `uv`                                     |
+| `uv` >= 0.5      | `winget install astral-sh.uv` | `brew install uv`                | `curl -LsSf https://astral.sh/uv/install.sh \| sh`     |
 
-**Git**
-This is required for version control and file synchronisation.
-* **Windows:** Install Git for Windows.
-* **macOS:** Install via the Xcode Command Line Tools or the official installer.
+Editor: VS Code with the LaTeX Workshop extension is recommended.
 
-**LaTeX Distribution**
-A full TeX distribution is required to compile the documents.
-* **Windows:** MiKTeX or TeX Live.
-* **macOS:** MacTeX.
-
-**Editor**
-Visual Studio Code is recommended. Install the "LaTeX Workshop" extension for syntax highlighting and integrated build tools.
-
-## Installation
-
-Open your terminal or command prompt. Navigate to the directory where you wish to store the project files. Execute the following command to clone the repository to your local machine.
+## Quickstart
 
 ```bash
-git clone [https://github.com/ZacKienzle2/ProtocolPolicyLab.git](https://github.com/ZacKienzle2/ProtocolPolicyLab.git)
+git clone https://github.com/ZacKienzle2/ProtocolPolicyLab.git
+cd ProtocolPolicyLab
+uv sync --frozen --all-extras
+pre-commit install --install-hooks
+latexmk -pdf main.tex
+```
+
+## Branching
+
+`main` is protected and always deployable. Feature branches: `feat/<slug>`, `fix/<slug>`, `docs/<slug>`, `ci/<slug>`, `build/<slug>`, `chore/<slug>`, `refactor/<slug>`, `perf/<slug>`, `test/<slug>`, `style/<slug>`. Open a PR, wait for green CI, squash-merge.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). Conventional Commits 1.0.0 and DCO sign-off required.
+
+## Maintainers
+
+See [CODEOWNERS](.github/CODEOWNERS).
+
+## License
+
+[MIT](LICENSE).
+
+## Related
+
+[SECURITY](SECURITY.md) | [SUPPORT](SUPPORT.md) | [GOVERNANCE](GOVERNANCE.md) | [CHANGELOG](CHANGELOG.md) | [ROADMAP](ROADMAP.md) | [CITATION](CITATION.cff)

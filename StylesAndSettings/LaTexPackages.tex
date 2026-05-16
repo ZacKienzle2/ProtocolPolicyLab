@@ -1,0 +1,226 @@
+% ***************************************************
+% LaTeX Packages
+% ***************************************************
+% Design and macro layer. Essential packages live in uqthesis.cls.
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{etoolbox}     % hook/conditional helpers used by later packages
+\usepackage{silence}      % \WarningFilter{...}{...} suppressions
+\usepackage{bm}
+\usepackage{dsfont}
+\usepackage{stmaryrd}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{thmtools}     % \listoftheorems and \declaretheorem
+\usepackage{mathtools}
+\usepackage{mathrsfs}     % \mathscr{...} script letters
+\usepackage{cancel}
+\usepackage{siunitx}
+\usepackage{nicefrac}
+\usepackage[table,dvipsnames]{xcolor}
+\definecolor{airforceblue}{RGB}{93,138,168}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.55}
+\definecolor{cream}{rgb}{1.0,0.99,0.82}
+\definecolor{islamicgreen}{rgb}{0.0,0.56,0.0}
+\definecolor{thmcolor}{rgb}{0.96,0.92,0.86}
+\definecolor{defncolor}{rgb}{0.93,0.96,0.98}
+\definecolor{tipcolor}{rgb}{0.94,0.97,0.94}
+\definecolor{warncolor}{rgb}{0.98,0.94,0.94}
+\definecolor{corcolor}{rgb}{0.96,0.94,0.98}
+\definecolor{packcol}{rgb}{0.09,0.45,0.27}
+\definecolor{methcol}{rgb}{0.16,0.32,0.75}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{matrix,calc,positioning,arrows.meta,intersections,chains,shapes.geometric,patterns,fpu}
+\usepackage{tikz-cd}      % commutative diagrams; load after tikz
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage{chngcntr}
+\usepackage{pdfpages}
+\usepackage{setspace}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{dcolumn}
+\usepackage{varwidth}
+\usepackage{booktabs}
+\usepackage{ragged2e}
+\usepackage{array}
+\usepackage{enumerate}
+\usepackage{mdframed}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{skins,breakable,theorems,listings}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\numberwithin{algorithm}{section}
+\usepackage{csquotes}     % \enquote{...} locale-correct quotation marks
+\usepackage{todonotes}    % \todo, \missingfigure; suppress via [disable]
+\usepackage{cite}
+\usepackage{hyperref}
+\usepackage[nameinlink]{cleveref}
+\usepackage{bookmark}     % replaces hyperref bookmark engine; load after hyperref
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=darkblue,
+	citecolor=darkblue,
+	urlcolor=darkblue,
+	breaklinks=true
+}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{condition}{Condition}[chapter]
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+
+\DeclareUnicodeCharacter{03B1}{\ensuremath{\alpha}}
+
+% Latin abbreviations and idiomatic phrases.
+\newcommand{\via}{\textit{via}}
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\etc}{\textit{etc.}}
+\newcommand{\vv}{\textit{vice versa}}
+\newcommand{\viz}{\textit{viz}.}
+\newcommand{\cf}{\textit{cf}.}
+\newcommand{\apr}{\textit{a priori}}
+\newcommand{\apo}{\textit{a posteriori}}
+\newcommand{\vivo}{\textit{in vivo}}
+\newcommand{\situ}{\textit{in situ}}
+\newcommand{\silico}{\textit{in silico}}
+\newcommand{\vitro}{\textit{in vitro}}
+\newcommand{\vs}{\textit{versus}}
+\newcommand{\ala}{\textit{\`{a} la}}
+\newcommand{\apriori}{\textit{a priori}}
+\newcommand{\etal}{\textit{et al.}}
+\newcommand{\naive}{na\"\i{}ve}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\set{\{}{\}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiterX\inner[2]{\langle}{\rangle}{#1, #2}
+
+% Number sets.
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+% Probability and expectation.
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\gvn}{\mid}
+\newcommand{\indep}{\perp\!\!\!\perp}
+\newcommand{\indsim}{\stackrel{\mathrm{ind}}{\sim}}
+\newcommand{\iidsim}{\stackrel{\mathrm{iid}}{\sim}}
+
+% Convergence modes for sequences of random variables and measures.
+\newcommand{\cvas}{\xrightarrow{\mathrm{a.s.}}}
+\newcommand{\cvP}{\xrightarrow{\Prob}}
+\newcommand{\cvLp}[1]{\xrightarrow{L^{#1}}}
+\newcommand{\cvD}{\xrightarrow{d}}
+\newcommand{\weakto}{\Rightarrow}
+
+% Indicator (preferred over \mathds{1}_{...} for uniform typesetting).
+\newcommand{\one}{\mathds{1}}
+
+% State space and measure-theoretic families.
+\newcommand{\matX}{\mathcal{X}}
+\newcommand{\Borel}{\mathcal{B}}
+\newcommand{\Bb}{\mathcal{B}_b}
+\newcommand{\Cb}{\mathcal{C}_b}
+\newcommand{\Meas}{\mathcal{M}}
+\newcommand{\ProbMeas}{\mathcal{P}}
+
+% Stochastic calculus and SDE notation.
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\dW}{\dd W}
+\newcommand{\dB}{\dd B}
+\DeclarePairedDelimiter\qv{\langle}{\rangle}
+
+% Function-space and operator-norm notation.
+\newcommand{\Lp}[1]{L^{#1}}
+\newcommand{\Lploc}[1]{L^{#1}_{\mathrm{loc}}}
+\newcommand{\Hilb}{\mathcal{H}}
+\newcommand{\opnorm}[1]{\norm{#1}_{\mathrm{op}}}
+
+% Arrow shortcuts.
+\newcommand{\la}{\leftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\Ra}{\Rightarrow}
+
+% Math operators. \DeclareMathOperator{*} places subscripts below in display.
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator*{\essinf}{ess\,inf}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\osc}{osc}
+\DeclareMathOperator{\Osc}{Osc}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\Lip}{Lip}
+\DeclareMathOperator{\VaR}{VaR}
+\DeclareMathOperator{\CVaR}{CVaR}
+\DeclareMathOperator{\ES}{ES}
+\DeclareMathOperator{\MSE}{MSE}
+\DeclareMathOperator{\RE}{RE}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Image}{Im}
+\DeclareMathOperator{\Kernel}{Ker}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\intr}{int}
+
+% Distributions.
+\newcommand{\Ber}{\mathrm{Ber}}
+\newcommand{\Bin}{\mathrm{Bin}}
+\newcommand{\Exp}{\mathrm{Exp}}
+\newcommand{\Gam}{\mathrm{Gamma}}
+\newcommand{\Geo}{\mathrm{Geo}}
+\newcommand{\Nor}{\mathcal{N}}
+\newcommand{\Poi}{\mathrm{Po}}
+\newcommand{\Unif}{\mathrm{Unif}}
+\newcommand{\ChiSq}{\chi^{2}}
+\newcommand{\NCChiSq}{\chi^{2}_{\mathrm{nc}}}
+
+% Bold vectors and matrices.
+\newcommand{\bx}{\boldsymbol{x}}
+\newcommand{\by}{\boldsymbol{y}}
+\newcommand{\bz}{\boldsymbol{z}}
+\newcommand{\bv}{\boldsymbol{v}}
+\newcommand{\bu}{\boldsymbol{u}}
+\newcommand{\btheta}{\boldsymbol{\theta}}
+\newcommand{\bmu}{\boldsymbol{\mu}}
+\newcommand{\bSigma}{\boldsymbol{\Sigma}}
+\newcommand{\bX}{\boldsymbol{X}}
+\newcommand{\bY}{\boldsymbol{Y}}
+\newcommand{\bZ}{\boldsymbol{Z}}
+\newcommand{\bW}{\boldsymbol{W}}

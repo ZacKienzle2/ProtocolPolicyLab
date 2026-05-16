@@ -34,9 +34,19 @@ concurrency:
 
 jobs:
   build:
-    name: Compile main.pdf with latexmk
+    name: Compile ${{ matrix.root_file }} with latexmk
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - root_file: main.tex
+            artifact_name: main-pdf
+            pdf_path: main.pdf
+          - root_file: MainInquiry.tex
+            artifact_name: maininquiry-pdf
+            pdf_path: MainInquiry.pdf
     steps:
       - name: Harden runner
         uses: step-security/harden-runner@ab7a9404c0f3da075243ca237b5fac12c98deaa5 # v2
@@ -51,18 +61,18 @@ jobs:
       - name: Compile
         uses: xu-cheng/latex-action@b8b50f5db98f7ade45f6da99c4dd92a14b6ed5e1 # v3
         with:
-          root_file: main.tex
+          root_file: ${{ matrix.root_file }}
           latexmk_use_lualatex: false
           latexmk_shell_escape: true
           continue_on_error: false
           extra_system_packages: "py3-pygments"
           post_compile: "latexmk -c"
 
-      - name: Upload main.pdf
+      - name: Upload PDF
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: main-pdf
-          path: main.pdf
+          name: ${{ matrix.artifact_name }}
+          path: ${{ matrix.pdf_path }}
           if-no-files-found: error
           retention-days: 14
 

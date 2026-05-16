@@ -1,0 +1,80 @@
+% ***************************************************
+% Protocol Policy Lab - Inquiry Response
+% ***************************************************
+%
+% Root document for the Protocol Policy Lab response to the
+% Parliamentary Accounts and Works Committee (PAWC) inquiry
+% into data centres.
+%
+% Structure mirrors the UQ Graduate School thesis template
+% (see main.tex for the thesis-side counterpart) but uses the
+% standard report class because uqthesis.cls is not vendored
+% in this repository.
+%
+% Shared design and macro layer:
+\documentclass[11pt,a4paper,oneside]{report}
+
+\input{StylesAndSettings/LaTexPackages.tex}
+
+% ***************************************************
+% Title page metadata
+% ***************************************************
+\title{Response to the Parliamentary Accounts and Works Committee Inquiry into Data Centres}
+\author{Protocol Policy Lab\\\href{https://orcid.org/0009-0007-3528-4938}{Zac Kienzle}}
+\date{\today}
+
+\begin{document}
+
+\renewcommand{\hbar}{\mathchar'26\mkern-7.5mu h}
+
+% ***************************************************
+% Front matter
+% ***************************************************
+\pagenumbering{roman}
+\maketitle
+\clearpage
+
+\input{PreliminaryPages/Abstract.tex}
+\clearpage
+
+\input{PreliminaryPages/AuthorDeclaration.tex}
+\clearpage
+
+\input{PreliminaryPages/Preliminary.tex}
+\clearpage
+
+\tableofcontents
+\clearpage
+
+\listoffigures
+\listoftables
+\clearpage
+
+% ***************************************************
+% Main matter
+% ***************************************************
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{Chapter1/Introduction.tex}
+\input{Chapter2/Background.tex}
+\input{Chapter3/TermsOfReferenceResponse.tex}
+\input{Chapter4/EvidenceAndAnalysis.tex}
+\input{Chapter5/Recommendations.tex}
+\input{Conclusion/Conclusion.tex}
+
+% ***************************************************
+% References
+% ***************************************************
+% Style: elsarticle-num produces numeric citations in citation order.
+% Switch to apalike (author-year) if the discipline calls for it.
+\bibliographystyle{elsarticle-num}
+\bibliography{References/references}
+
+% ***************************************************
+% Appendices
+% ***************************************************
+\appendix
+\input{Appendix/Appendix.tex}
+
+\end{document}

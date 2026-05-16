@@ -1,6 +1,6 @@
 # PAWC Data Centres Inquiry
 
-Source documents for the Parliamentary Accounts and Works Committee (PAWC) inquiry into data centres. Used as inputs for analysis under `main.tex`.
+Source documents for the Parliamentary Accounts and Works Committee (PAWC) inquiry into data centres. Used as inputs for analysis under `MainInquiry.tex`.
 
 ## Files
 

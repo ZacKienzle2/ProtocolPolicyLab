@@ -36,7 +36,7 @@ figures = [
   "pandas>=2.2",
 ]
 bib = [
-  "bibtexparser>=2.0",
+  "bibtexparser>=1.4,<2",
   "pyyaml>=6.0",
 ]
 

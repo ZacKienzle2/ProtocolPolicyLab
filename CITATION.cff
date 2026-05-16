@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata from this file."
+title: "Protocol Policy Lab"
+abstract: "Version-controlled corpus of policy research, shared LaTeX preamble, master bibliography, and build tooling produced by The Protocol."
+type: software
+authors:
+  - family-names: "Kienzle"
+    given-names: "Zac"
+repository-code: "https://github.com/ZacKienzle2/ProtocolPolicyLab"
+url: "https://github.com/ZacKienzle2/ProtocolPolicyLab"
+license: MIT
+keywords:
+  - policy-research
+  - latex
+  - thesis
+  - bibliography
+  - reproducible-research

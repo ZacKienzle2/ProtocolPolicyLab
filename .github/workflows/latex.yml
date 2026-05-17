@@ -93,6 +93,7 @@ jobs:
         uses: xu-cheng/latex-action@e2f99d4b3685b0da93f97e1b86ad8fab81105098 # v3
         with:
           root_file: ${{ matrix.root_file }}
+          work_in_root_file_dir: true
           latexmk_use_lualatex: false
           latexmk_shell_escape: true
           continue_on_error: false

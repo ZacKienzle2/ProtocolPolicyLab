@@ -1,0 +1,12 @@
+slug: "{{slug}}"
+title: "{{Inquiry Title}}"
+committee:
+  name: "{{Committee Name}}"
+  short: "{{Acronym}}"
+contact:
+  address: "{{Mailing Address}}"
+  phone: "{{Phone}}"
+  email: "{{Contact Email}}"
+terms_of_reference_url: "{{Source URL}}"
+submission_deadline: "{{YYYY-MM-DD}}"
+status: "drafting"   # drafting | review | lodged | withdrawn

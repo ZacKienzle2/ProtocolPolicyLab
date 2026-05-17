@@ -1,0 +1,63 @@
+% ***************************************************
+% Protocol Policy Lab inquiry response root document
+% ***************************************************
+
+\documentclass[11pt,a4paper,oneside]{report}
+
+% Point shared assets back to the repository root (depth 2).
+\providecommand{\PPLBib}{../../References/References.bib}
+\input{../../StylesAndSettings/LaTexPackages.tex}
+
+% ***************************************************
+% Title page metadata
+% ***************************************************
+\title{Response to the House of Representatives Standing Committee on Education's Inquiry into the Factors Driving Educational Attainment}
+\author{Protocol Policy Lab\\\href{https://orcid.org/0009-0007-3528-4938}{Zac Kienzle}}
+\date{\today}
+
+\begin{document}
+
+\renewcommand{\hbar}{\mathchar'26\mkern-7.5mu h}
+
+% ***************************************************
+% Front matter
+% ***************************************************
+\pagenumbering{roman}
+\maketitle
+\clearpage
+
+% Front matter commented out while the chapter body is iterated on.
+%\input{preliminary/abstract.tex}
+%\clearpage
+%
+%\input{preliminary/author-declaration.tex}
+%\clearpage
+%
+%\input{preliminary/preliminary.tex}
+%\clearpage
+
+% ***************************************************
+% Main matter
+% ***************************************************
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{chapters/01-introduction.tex}
+\input{chapters/02-background.tex}
+\input{chapters/03-terms-of-reference.tex}
+\input{chapters/04-evidence-and-analysis.tex}
+\input{chapters/05-recommendations.tex}
+\input{chapters/conclusion.tex}
+
+% ***************************************************
+% References
+% ***************************************************
+\printbibliography[heading=bibintoc]
+
+% ***************************************************
+% Appendices
+% ***************************************************
+\appendix
+\input{appendix/appendix.tex}
+
+\end{document}

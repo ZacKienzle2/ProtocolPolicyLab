@@ -15,14 +15,15 @@ Central version control for policy research output produced by The Protocol. Hou
 ## Contents
 
 - `ResearchManual.tex` - Protocol Policy Lab research manual root.
-- `MainInquiry.tex` - PAWC data centres inquiry response root.
 - `StylesAndSettings/LaTexPackages.tex` - shared preamble (packages, colours, fonts, headers, theorems, listings, macros).
 - `References/References.bib` - master bibliography.
-- `PreliminaryPages/` - abstract, declaration, contributions, AI use, acknowledgements.
-- `Chapter1/` ... `Chapter5/`, `Conclusion/`, `Appendix/` - inquiry chapter bodies.
-- `inquiries/pawc-data-centres/` - source documents (transcript, supplementary questions, factsheet, draft response).
-- `.latexmkrc` - build configuration for `latexmk`.
+- `inquiries/_template/` - skeleton for a new inquiry response. Copy into `inquiries/<slug>/` and overwrite the metadata.
+- `inquiries/pawc-data-centres/` - PAWC inquiry into data centres: `response.tex`, `metadata.yml`, chapters, preliminary pages, appendix, and source documents under `sources/`.
+- `inquiries/education-attainment/` - HoR Standing Committee on Education inquiry into the factors driving educational attainment: same layout.
+- `.latexmkrc`, `.latexmk-bibtex.pl` - build configuration for `latexmk` and the bibtex wrapper.
 - `scripts/` - Python helpers for bibliography curation, figure generation, and release tooling.
+
+Compile any inquiry response from the repository root with `latexmk -cd -pdf inquiries/<slug>/response.tex`.
 
 ## Prerequisites
 
@@ -43,7 +44,8 @@ cd ProtocolPolicyLab
 uv sync --frozen --all-extras
 pre-commit install --install-hooks
 latexmk -pdf ResearchManual.tex
-latexmk -pdf MainInquiry.tex
+latexmk -cd -pdf inquiries/pawc-data-centres/response.tex
+latexmk -cd -pdf inquiries/education-attainment/response.tex
 ```
 
 ## Branching

@@ -65,3 +65,31 @@ build:
           - "**/Dockerfile*"
           - "**/docker-compose*.yml"
           - ".dockerignore"
+          - ".latexmkrc"
+          - ".latexmk-bibtex.pl"
+
+latex:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.tex"
+          - "**/*.bib"
+          - "**/*.sty"
+          - "**/*.cls"
+          - "**/*.bst"
+          - "StylesAndSettings/**"
+          - "References/**"
+
+"inquiry/pawc-data-centres":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "inquiries/pawc-data-centres/**"
+
+"inquiry/education-attainment":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "inquiries/education-attainment/**"
+
+"inquiry/template":
+  - changed-files:
+      - any-glob-to-any-file:
+          - "inquiries/_template/**"

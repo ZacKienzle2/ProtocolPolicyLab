@@ -11,6 +11,8 @@ on:
       - "**/*.bst"
       - ".latexmkrc"
       - "StylesAndSettings/**"
+      - "References/**"
+      - "inquiries/**"
       - ".github/workflows/latex.yml"
   pull_request:
     branches: [main]
@@ -22,6 +24,8 @@ on:
       - "**/*.bst"
       - ".latexmkrc"
       - "StylesAndSettings/**"
+      - "References/**"
+      - "inquiries/**"
       - ".github/workflows/latex.yml"
   workflow_dispatch: {}
 
@@ -33,20 +37,47 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  discover:
+    name: Discover LaTeX roots
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      matrix: ${{ steps.set.outputs.matrix }}
+    steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@ab7a9404c0f3da075243ca237b5fac12c98deaa5 # v2
+        with:
+          egress-policy: audit
+
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
+      - name: Build matrix
+        id: set
+        run: |
+          set -euo pipefail
+          items='[{"root_file":"ResearchManual.tex","artifact":"researchmanual-pdf","pdf":"ResearchManual.pdf"}]'
+          for response in inquiries/*/response.tex; do
+            [ -e "$response" ] || continue
+            slug=$(basename "$(dirname "$response")")
+            [ "$slug" = "_template" ] && continue
+            item=$(printf '{"root_file":"%s","artifact":"%s-pdf","pdf":"inquiries/%s/response.pdf"}' "$response" "$slug" "$slug")
+            items=$(printf '%s' "$items" | jq -c --argjson item "$item" '. + [$item]')
+          done
+          matrix=$(printf '{"include":%s}' "$items")
+          echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
+          printf 'Discovered roots:\n%s\n' "$matrix" | jq .
+
   build:
-    name: Compile ${{ matrix.root_file }} with latexmk
+    name: Compile ${{ matrix.root_file }}
+    needs: discover
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - root_file: ResearchManual.tex
-            artifact_name: researchmanual-pdf
-            pdf_path: ResearchManual.pdf
-          - root_file: MainInquiry.tex
-            artifact_name: maininquiry-pdf
-            pdf_path: MainInquiry.pdf
+      matrix: ${{ fromJson(needs.discover.outputs.matrix) }}
     steps:
       - name: Harden runner
         uses: step-security/harden-runner@ab7a9404c0f3da075243ca237b5fac12c98deaa5 # v2
@@ -71,8 +102,8 @@ jobs:
       - name: Upload PDF
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: ${{ matrix.artifact_name }}
-          path: ${{ matrix.pdf_path }}
+          name: ${{ matrix.artifact }}
+          path: ${{ matrix.pdf }}
           if-no-files-found: error
           retention-days: 14
 
@@ -100,7 +131,7 @@ jobs:
       - name: Run chktex
         run: |
           set -euo pipefail
-          mapfile -t files < <(git ls-files -- '*.tex')
+          mapfile -t files < <(git ls-files -- '*.tex' ':!inquiries/_template/**')
           if [ ${#files[@]} -eq 0 ]; then
             echo "No .tex files."
             exit 0

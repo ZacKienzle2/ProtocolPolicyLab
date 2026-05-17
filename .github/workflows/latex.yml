@@ -67,7 +67,8 @@ jobs:
           done
           matrix="{\"include\":[${entries}]}"
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
-          printf 'Discovered roots:\n%s\n' "$matrix" | jq .
+          echo "Discovered roots:"
+          printf '%s\n' "$matrix" | jq .
 
   build:
     name: Compile ${{ matrix.root_file }}

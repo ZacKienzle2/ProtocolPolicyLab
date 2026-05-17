@@ -58,15 +58,14 @@ jobs:
         id: set
         run: |
           set -euo pipefail
-          items='[{"root_file":"ResearchManual.tex","artifact":"researchmanual-pdf","pdf":"ResearchManual.pdf"}]'
+          entries='{"root_file":"ResearchManual.tex","artifact":"researchmanual-pdf","pdf":"ResearchManual.pdf"}'
+          shopt -s nullglob
           for response in inquiries/*/response.tex; do
-            [ -e "$response" ] || continue
             slug=$(basename "$(dirname "$response")")
             [ "$slug" = "_template" ] && continue
-            item=$(printf '{"root_file":"%s","artifact":"%s-pdf","pdf":"inquiries/%s/response.pdf"}' "$response" "$slug" "$slug")
-            items=$(printf '%s' "$items" | jq -c --argjson item "$item" '. + [$item]')
+            entries="${entries},{\"root_file\":\"${response}\",\"artifact\":\"${slug}-pdf\",\"pdf\":\"inquiries/${slug}/response.pdf\"}"
           done
-          matrix=$(printf '{"include":%s}' "$items")
+          matrix="{\"include\":[${entries}]}"
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
           printf 'Discovered roots:\n%s\n' "$matrix" | jq .
 

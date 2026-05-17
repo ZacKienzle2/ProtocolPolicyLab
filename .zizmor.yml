@@ -1,11 +1,9 @@
 rules:
   template-injection:
-    config:
-      ignore:
-        - release.yml:50:11
+    ignore:
+      - release.yml:50:11
   excessive-permissions:
-    config:
-      ignore: []
+    ignore: []
   unpinned-uses:
     config:
       policies:

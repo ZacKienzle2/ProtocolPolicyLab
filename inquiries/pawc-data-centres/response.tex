@@ -1,63 +1,51 @@
-% ***************************************************
-% Protocol Policy Lab inquiry response root document
-% ***************************************************
+% =====================================================================
+% Protocol Policy Lab
+% Answers to Supplementary Questions
+% NSW Legislative Council Public Accountability and Works Committee (PAWC)
+% Inquiry into Data Centres - Hearing of 1 May 2026
+%
+% Root document. Compile from the repository root with:
+%   latexmk -cd -pdf inquiries/pawc-data-centres/response.tex
+% =====================================================================
 
 \documentclass[11pt,a4paper,oneside]{report}
 
-% Point shared assets back to the repository root (depth 2).
+% Shared style and bibliography live at the repository root (depth 2).
 \providecommand{\PPLBib}{../../References/References.bib}
 \input{../../StylesAndSettings/LaTexPackages.tex}
 
-% ***************************************************
-% Title page metadata
-% ***************************************************
-\title{Response to the Parliamentary Accounts and Works Committee Inquiry into Data Centres}
+% ---------------------------------------------------------------------
+% Title metadata
+% ---------------------------------------------------------------------
+\title{Answers to Supplementary Questions\\Public Accountability and Works Committee\\Inquiry into Data Centres}
 \author{Protocol Policy Lab\\\href{https://orcid.org/0009-0007-3528-4938}{Zac Kienzle}}
 \date{\today}
 
 \begin{document}
 
-\renewcommand{\hbar}{\mathchar'26\mkern-7.5mu h}
-
-% ***************************************************
+% =====================================================================
 % Front matter
-% ***************************************************
+% =====================================================================
 \pagenumbering{roman}
 \maketitle
 \clearpage
+\tableofcontents
+\clearpage
 
-% Front matter commented out while the chapter body is iterated on.
-%\input{preliminary/abstract.tex}
-%\clearpage
-%
-%\input{preliminary/author-declaration.tex}
-%\clearpage
-%
-%\input{preliminary/preliminary.tex}
-%\clearpage
-
-% ***************************************************
-% Main matter
-% ***************************************************
+% =====================================================================
+% Body - responses to the Committee's supplementary questions
+% =====================================================================
 \pagenumbering{arabic}
 \setcounter{page}{1}
 
-\input{chapters/01-introduction.tex}
-\input{chapters/02-background.tex}
-\input{chapters/03-terms-of-reference.tex}
-\input{chapters/04-evidence-and-analysis.tex}
-\input{chapters/05-recommendations.tex}
-\input{chapters/conclusion.tex}
+\input{chapters/06-introduction.tex}
+\input{chapters/07-pue.tex}
+\input{chapters/08-gentrification.tex}
+\input{chapters/09-synthesis.tex}
 
-% ***************************************************
+% =====================================================================
 % References
-% ***************************************************
+% =====================================================================
 \printbibliography[heading=bibintoc]
-
-% ***************************************************
-% Appendices
-% ***************************************************
-\appendix
-\input{appendix/appendix.tex}
 
 \end{document}

@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use FindBin ();
 use File::Basename ();
+use Unicode::Normalize qw(NFD);
 
 my $UTF8_CHAR = qr/[\xC2-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF]{2}|[\xF0-\xF4][\x80-\xBF]{3}/;
 my $AUTHOR_FIELD = qr/(?:author|editor)\s*=\s*(?:\{((?:[^{}]|\{[^{}]*\})*)\}|"([^"]*)")/is;
@@ -156,10 +157,76 @@ $ENV{BSTINPUTS} = join $sep, $proj_root, grep { length } ($ENV{BSTINPUTS} // '')
 # Idempotent in-place bib patcher. Run before each bibtex invocation to
 # bridge biblatex-named fields (DATE, JOURNALTITLE) into BibTeX-named
 # aliases (YEAR, JOURNAL) the classic engine actually reads, and rewrap
-# single-line ABSTRACT/TITLE/NOTE/KEYWORDS values whose contents contain
-# internal " characters so the parser does not silently drop the entry.
+# ABSTRACT/TITLE/SHORTTITLE/NOTE/ANNOTE/KEYWORDS/COPYRIGHT values (single-
+# or multi-line) whose contents contain internal " characters so the
+# parser does not silently drop the entry.
 # Writes back to the source path; subsequent runs are no-ops on already
 # patched entries.
+# ---------------------------------------------------------------------
+# UTF-8 -> LaTeX transliteration. BibTeX (unlike biber) is not Unicode
+# aware, so Zotero's smart quotes, dashes, symbols and accented letters
+# must be rewritten to LaTeX control sequences before the engine parses
+# the file. Accented Latin letters are handled generically via NFD
+# decomposition; anything still non-ASCII (emoji, CJK) is dropped.
+# ---------------------------------------------------------------------
+my %TYPO = (
+    "\x{2018}" => "`",  "\x{2019}" => "'",  "\x{201A}" => ",",
+    "\x{201C}" => "``", "\x{201D}" => "''", "\x{201E}" => ",,",
+    "\x{2013}" => "--", "\x{2014}" => "---", "\x{2015}" => "---",
+    "\x{2026}" => "\\ldots{}", "\x{00A0}" => "~", "\x{2009}" => "\\,",
+    "\x{2007}" => "~", "\x{202F}" => "\\,", "\x{2212}" => "-",
+    "\x{00D7}" => "\$\\times\$", "\x{00B7}" => "\\textperiodcentered{}",
+    "\x{2022}" => "\\textbullet{}", "\x{00B0}" => "\\textdegree{}",
+    "\x{20AC}" => "\\texteuro{}", "\x{00A3}" => "\\pounds{}",
+    "\x{00A9}" => "\\textcopyright{}", "\x{00AE}" => "\\textregistered{}",
+    "\x{2122}" => "\\texttrademark{}", "\x{00BD}" => "1/2",
+    "\x{00BC}" => "1/4", "\x{00BE}" => "3/4", "\x{2032}" => "'",
+    "\x{2033}" => "''", "\x{2192}" => "\$\\to\$",
+);
+my %SPECIAL = (
+    "\x{00F8}" => "\\o{}", "\x{00D8}" => "\\O{}", "\x{0142}" => "\\l{}",
+    "\x{0141}" => "\\L{}", "\x{00DF}" => "\\ss{}", "\x{00E6}" => "\\ae{}",
+    "\x{00C6}" => "\\AE{}", "\x{0153}" => "\\oe{}", "\x{0152}" => "\\OE{}",
+    "\x{00F0}" => "\\dh{}", "\x{00FE}" => "\\th{}", "\x{0111}" => "\\dj{}",
+    "\x{0110}" => "\\DJ{}", "\x{00E5}" => "\\r{a}", "\x{00C5}" => "\\r{A}",
+);
+my %ACCENT = (
+    "\x{0301}" => "'", "\x{0300}" => "`", "\x{0302}" => "^", "\x{0308}" => '"',
+    "\x{0303}" => "~", "\x{0304}" => "=", "\x{0307}" => ".", "\x{030C}" => "v",
+    "\x{0306}" => "u", "\x{0327}" => "c", "\x{030A}" => "r", "\x{0328}" => "k",
+    "\x{0323}" => "d", "\x{0331}" => "b", "\x{0341}" => "'", "\x{0340}" => "`",
+    "\x{0342}" => "^",
+);
+
+sub _apply_accents {
+    my ($base, $marks) = @_;
+    my $out = $base;
+    for my $m (split //, $marks) {
+        my $cmd = $ACCENT{$m};
+        next unless defined $cmd && length $cmd;
+        $out = "\\$cmd\{$out\}";
+    }
+    # Brace-wrap so a diaeresis (\") cannot terminate a "-delimited field.
+    return "{" . $out . "}";
+}
+
+sub latexify_unicode {
+    my ($s) = @_;
+    $s =~ s/([\x{2018}\x{2019}\x{201A}\x{201C}\x{201D}\x{201E}\x{2013}\x{2014}\x{2015}\x{2026}\x{00A0}\x{2009}\x{2007}\x{202F}\x{2212}\x{00D7}\x{00B7}\x{2022}\x{00B0}\x{20AC}\x{00A3}\x{00A9}\x{00AE}\x{2122}\x{00BD}\x{00BC}\x{00BE}\x{2032}\x{2033}\x{2192}])/$TYPO{$1}/ge;
+    $s =~ s/([\x{00F8}\x{00D8}\x{0142}\x{0141}\x{00DF}\x{00E6}\x{00C6}\x{0153}\x{0152}\x{00F0}\x{00FE}\x{0111}\x{0110}\x{00E5}\x{00C5}])/$SPECIAL{$1}/ge;
+    $s = NFD($s);
+    $s =~ s/([A-Za-z])([\x{0300}-\x{036F}]+)/_apply_accents($1, $2)/ge;
+    $s =~ s/[\x{0300}-\x{036F}]//g;   # orphan combining marks
+    $s =~ s/[^\x{0000}-\x{007F}]//g;  # any residue (emoji, CJK, unmapped)
+    return $s;
+}
+
+# Idempotent in-place bib patcher. Run before each bibtex invocation to
+# bridge biblatex-named fields (DATE, JOURNALTITLE) into BibTeX-named
+# aliases (YEAR, JOURNAL), rewrap values whose contents contain internal
+# " characters, and transliterate UTF-8 to LaTeX so the non-Unicode
+# engine parses the file. Writes back to the source; subsequent runs are
+# no-ops on already patched, already ASCII entries.
 sub patch_bib_in_place {
     my ($src) = @_;
     return unless -f $src;
@@ -168,12 +235,18 @@ sub patch_bib_in_place {
     local $/;
     my $content = <$in>;
     close $in;
+    utf8::decode($content);
     my $original = $content;
 
-    $content =~ s{^(\s+(?:ABSTRACT|TITLE|NOTE|KEYWORDS)\s+=\s+)"((?:[^"\\]|\\.|"(?=.*"))*?)"(\s*,?\s*)$}{
+    $content =~ s{
+        ^(\s+(?:ABSTRACT|TITLE|SHORTTITLE|NOTE|ANNOTE|KEYWORDS|COPYRIGHT)\s+=\s+)
+        "(.*?)"
+        ([ \t]*,?[ \t]*)
+        (?=\r?\n\s*(?:[A-Z][A-Za-z]*\s*=|\}))
+    }{
         my ($head, $val, $tail) = ($1, $2, $3);
         $val =~ /"/ ? ($head . '{' . $val . '}' . $tail) : ($head . '"' . $val . '"' . $tail);
-    }gme;
+    }gmsxe;
 
     $content =~ s{
         (\@[A-Za-z]+\{[^,]+,\s*\n)
@@ -191,7 +264,10 @@ sub patch_bib_in_place {
         @inject ? $header . join('', @inject) . $body . $tail : $header . $body . $tail;
     }gxse;
 
+    $content = latexify_unicode($content);
+
     return if $content eq $original;
+    utf8::encode($content);
     open my $out, '>:raw', $src or return;
     print $out $content;
     close $out;

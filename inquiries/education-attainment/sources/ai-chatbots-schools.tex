@@ -1,0 +1,125 @@
+% Source brief: government generative-AI chatbots in Australian public schooling.
+% Two case initiatives, South Australia (EdChat) and Queensland (Cerego trial,
+% then Corella). Prose is citation-ready against References/References.bib.
+
+\section{South Australia: EdChat}
+\label{sec:ai:edchat}
+
+\paragraph{Location.}
+South Australian government schools, administered statewide by the Department for
+Education \autocite{educationSAEdChat2025}.
+
+\paragraph{Overview.}
+EdChat is a department-built generative-AI chatbot, developed with Microsoft and
+delivery partner Insight, and powered by the Azure OpenAI Service running the same
+model family as ChatGPT \autocite{microsoftEdChatContentSafety2024}. Its aim is to
+give students and staff a sandboxed conversational assistant that supports learning
+and reduces teacher administrative load while suppressing the data-leakage and
+harmful-content risks of consumer chatbots \autocite{educationSAEdChat2025}. An
+initial eight-week pilot, 1,500 students and 150 educators across eight secondary
+schools, completed in August 2023; subsequent proof-of-concept phases involved more
+than 10,000 students \autocite{microsoftEdChatContentSafety2024}. Access opened to
+all department staff, including principals, teachers, and preschool staff, in late
+2024, with a phased rollout to public secondary students from Term 4, 2025
+\autocite{innovationausEdChatStatewide2025}. The organising body is the South
+Australian Department for Education, under Chief Executive Martin Westwell.
+
+\paragraph{Curriculum.}
+EdChat is positioned as a cross-subject learning aid rather than a discrete course.
+Documented student uses include practising foreign languages, working mathematics
+problems, rephrasing difficult instructions, and probing complex concepts to aid
+comprehension and creativity \autocite{microsoftLearningAIEra2024}. Teachers govern
+classroom use through a traffic-light convention, red where AI would compromise
+assessment of a student's own writing, green where it raises efficiency in research
+and planning, integrating the tool into pedagogy rather than displacing it
+\autocite{educationSAEdChat2025}.
+
+\paragraph{Infrastructure and scalability.}
+The service is hosted in the department's private Azure tenancy with all data stored
+in Australia and never transmitted to public ChatGPT servers
+\autocite{educationSAEdChat2025}. Azure AI Content Safety screens prompts and
+responses for harmful material, and comprehensive interaction logging gives school
+staff oversight of student usage, including outside school hours, with filtered-content
+alerts routed to principals the next school day rather than monitored in real time
+\autocite{microsoftEdChatContentSafety2024}. This managed, single-tenant architecture
+underpinned the move from an eight-school pilot to statewide secondary deployment.
+
+\paragraph{Impact.}
+During the trial, active student use rose from roughly 20 per cent at the outset to a
+peak by the end of the eight weeks as familiarity grew
+\autocite{microsoftEdChatContentSafety2024}. Across the wider rollout, 41 per cent of
+students and 36 per cent of educators used the tool at least once, with 93 per cent of
+in-hours student prompts curriculum-related. Educators applied it to lesson planning,
+correspondence, and assessment-support tasks, the stated mechanism for reducing
+workload \autocite{microsoftLearningAIEra2024}.
+
+\paragraph{Evaluation and analysis.}
+An external evaluation by Telstra-Quantium and The Learning Future (2024) tracked the
+10,000-plus trial cohort and found 94 per cent of student interactions related to
+school curriculum subjects, the principal evidence cited for the safety and
+appropriateness judgement that authorised statewide release
+\autocite{educationSAEdChat2025}. The evaluation emphasises curriculum-focused use,
+strong cross-subject uptake, and administrative time savings. Independent commentary
+notes the absence of published longitudinal learning-outcome data and cautions against
+over-reliance, marking the chief gap between demonstrated engagement and demonstrated
+attainment effects \autocite{innovationausEdChatStatewide2025}.
+
+\section{Queensland: Cerego Trial and Corella}
+\label{sec:ai:queensland}
+
+\paragraph{Location.}
+Queensland state schools, administered by the Department of Education, Queensland
+\autocite{educationQueenslandGenerativeAI2026}.
+
+\paragraph{Overview.}
+Queensland has run two distinct initiatives. First, a 2023 trial, announced 10 October
+2023 by Education Minister Grace Grace, deployed a platform from US vendor Cerego to
+500 students across ten state schools \autocite{acsQueenslandTrialAI2023}. Second,
+Corella, a department-built generative-AI assistant developed with the Department of
+Customer Services, Open Data and Small and Family Business, moved from a 15-school
+trial toward statewide rollout to every state high school by June 2026
+\autocite{educationdailyCorellaRollout2025}. The shared aim is to support teaching and
+learning, prepare students for future work, and reduce teacher workload, with the
+department framing AI as a supportive tool and not a replacement for educators
+\autocite{queenslandAITrialSchools2023}.
+
+\paragraph{Curriculum.}
+The Cerego trial covered English, physics, science, health, humanities, and
+accounting, delivering adaptive quiz-based learning that adjusts to each student and
+draws only on a digitised version of the approved Queensland state-school curriculum,
+a design choice that bounds hallucination and protects academic integrity
+\autocite{acsQueenslandTrialAI2023}. Corella is a broader text-based assistant for
+generating ideas, explanations, summaries, and drafts, used by students for research,
+drafting, brainstorming, and revision, and explicitly to teach responsible AI use
+\autocite{educationdailyCorellaRollout2025}.
+
+\paragraph{Infrastructure and scalability.}
+Cerego is a third-party platform restricted to approved curriculum content
+\autocite{acsQueenslandTrialAI2023}. Corella is a large-language-model assistant hosted
+within a secure Queensland Government environment and purpose-built for classroom use
+rather than relying on public AI services, the basis for scaling from 15 trial schools
+to the full state secondary system \autocite{educationQueenslandCorellaTerms2026}. Both
+initiatives are governed by the six principles of the Australian Framework for
+Generative Artificial Intelligence in Schools, covering privacy, security and safety,
+wellbeing, teaching and learning, transparency, and fairness and accountability
+\autocite{queenslandAITrialSchools2023}.
+
+\paragraph{Impact.}
+The Corella trial across 15 schools, including Mt Gravatt State High in Brisbane,
+indicated potential to cut teacher workload by about 25 per cent by automating lesson
+planning, assessment, reporting, and data entry, alongside reported gains in student
+digital literacy and teacher work-life balance
+\autocite{educationdailyCorellaRollout2025}. Statewide access will extend to teachers,
+teacher aides, school leaders, and students in Years 7 to 10, with parental consent
+required for student use \autocite{educationdailyCorellaRollout2025}.
+
+\paragraph{Evaluation and analysis.}
+Evidence to date is trial-stage and largely workload-oriented rather than
+attainment-oriented. The headline 25 per cent workload figure derives from the
+15-school Corella trial and is reported by government and secondary outlets rather than
+a published independent evaluation \autocite{educationdailyCorellaRollout2025}. The
+2023 Cerego trial was structured as a controlled exploration of adaptive learning
+against the digitised curriculum, with the department stressing accuracy, privacy, and
+teacher oversight as evaluation criteria \autocite{queenslandAITrialSchools2023}. As
+with EdChat, the principal analytical gap is the lack of public measurement linking
+chatbot use to student learning outcomes.

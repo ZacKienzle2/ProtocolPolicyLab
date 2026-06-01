@@ -1,4 +1,4 @@
-$pdflatex = 'pdflatex --shell-escape %O %S';
+$pdflatex = 'pdflatex -synctex=1 --shell-escape %O %S';
 
 # biblatex uses the biber backend; latexmk auto-detects the .bcf and runs
 # biber. biber is Unicode-aware, so no .bib pre-processing wrapper is

@@ -20,7 +20,7 @@ Central version control for policy research output produced by The Protocol. Hou
 - `inquiries/_template/` - skeleton for a new inquiry response. Copy into `inquiries/<slug>/` and overwrite the metadata.
 - `inquiries/pawc-data-centres/` - PAWC inquiry into data centres: `response.tex`, `metadata.yml`, chapters, preliminary pages, appendix, and source documents under `sources/`.
 - `inquiries/education-attainment/` - HoR Standing Committee on Education inquiry into the factors driving educational attainment: same layout.
-- `.latexmkrc`, `.latexmk-bibtex.pl` - build configuration for `latexmk` and the bibtex wrapper.
+- `.latexmkrc` - build configuration for `latexmk` (biber backend, clean-up extensions).
 - `scripts/` - Python helpers for bibliography curation, figure generation, and release tooling.
 
 Compile any inquiry response from the repository root with `latexmk -cd -pdf inquiries/<slug>/response.tex`.

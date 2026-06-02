@@ -1,0 +1,30 @@
+% =====================================================================
+% Protocol Policy Lab - PAWC Inquiry into Data Centres
+% Supplementary Question 2: Energy Gentrification in Western Sydney
+% Compile from the repository root:
+%   latexmk -cd -pdf inquiries/pawc-data-centres/sq2-gentrification.tex
+% =====================================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\providecommand{\PPLBib}{../../References/References.bib}
+\input{../../StylesAndSettings/LaTexPackages.tex}
+\input{coverpage.tex}
+
+\title{Energy Gentrification in Western Sydney}
+\author{Protocol Policy Lab}
+\date{\today}
+
+\begin{document}
+\pagenumbering{roman}
+\PPLcover{Supplementary Question 2}{Energy Gentrification in Western Sydney}
+\tableofcontents
+\clearpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{chapters/preface-gentrification.tex}
+\input{chapters/08-gentrification.tex}
+
+\printbibliography[heading=bibintoc]
+
+\end{document}

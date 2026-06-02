@@ -1,0 +1,30 @@
+% =====================================================================
+% Protocol Policy Lab - PAWC Inquiry into Data Centres
+% Supplementary Question 1: Power Usage Effectiveness Reporting
+% Compile from the repository root:
+%   latexmk -cd -pdf inquiries/pawc-data-centres/sq1-pue.tex
+% =====================================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\providecommand{\PPLBib}{../../References/References.bib}
+\input{../../StylesAndSettings/LaTexPackages.tex}
+\input{coverpage.tex}
+
+\title{Power Usage Effectiveness Reporting}
+\author{Protocol Policy Lab}
+\date{\today}
+
+\begin{document}
+\pagenumbering{roman}
+\PPLcover{Supplementary Question 1}{Power Usage Effectiveness Reporting}
+\tableofcontents
+\clearpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{chapters/preface-pue.tex}
+\input{chapters/07-pue.tex}
+
+\printbibliography[heading=bibintoc]
+
+\end{document}

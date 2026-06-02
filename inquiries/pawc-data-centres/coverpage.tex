@@ -1,0 +1,27 @@
+% =====================================================================
+% Shared cover page for the PAWC data-centre per-question responses.
+% Usage: \PPLcover{<instrument>}{<question title>}
+% =====================================================================
+\newcommand{\PPLcover}[2]{%
+  \begin{titlepage}
+    \centering
+    \vspace*{\stretch{1}}
+    {\scshape\LARGE Protocol Policy Lab\par}
+    \vspace{1.5cm}
+    {\large Public Accountability and Works Committee\par}
+    {\large Inquiry into Data Centres\par}
+    \vspace{2cm}
+    {\color{darkblue}\rule{\linewidth}{0.6pt}}\par
+    \vspace{0.9cm}
+    {\Large #1\par}
+    \vspace{0.5cm}
+    {\huge\bfseries #2\par}
+    \vspace{0.9cm}
+    {\color{darkblue}\rule{\linewidth}{0.6pt}}\par
+    \vspace{2cm}
+    {\large Response by Protocol Policy Lab\par}
+    \vspace{0.3cm}
+    {\large \today\par}
+    \vspace*{\stretch{2}}
+  \end{titlepage}%
+}

@@ -1,0 +1,30 @@
+% =====================================================================
+% Protocol Policy Lab - PAWC Inquiry into Data Centres
+% Question on Notice: the Norwegian and European Models
+% Compile from the repository root:
+%   latexmk -cd -pdf inquiries/pawc-data-centres/qon-norway-europe.tex
+% =====================================================================
+\documentclass[11pt,a4paper,oneside]{report}
+\providecommand{\PPLBib}{../../References/References.bib}
+\input{../../StylesAndSettings/LaTexPackages.tex}
+\input{coverpage.tex}
+
+\title{The Norwegian and European Models}
+\author{Protocol Policy Lab}
+\date{\today}
+
+\begin{document}
+\pagenumbering{roman}
+\PPLcover{Question on Notice}{The Norwegian and European Models}
+\tableofcontents
+\clearpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{chapters/preface-qon.tex}
+\input{chapters/09-question-on-notice.tex}
+
+\printbibliography[heading=bibintoc]
+
+\end{document}
